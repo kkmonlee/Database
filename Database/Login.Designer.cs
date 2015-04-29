@@ -186,5 +186,9 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel BT_toolStripAdmin;
     }
+
+    public class LoginImpl : Login
+    {
+    }
 }
 

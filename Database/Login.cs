@@ -29,7 +29,7 @@ namespace Database
 
     public partial class Login : Form
     {
-        public Login()
+        public Login(string ident)
         {
 
             InitializeComponent();
@@ -41,10 +41,10 @@ namespace Database
             toolStripProgressBar1.Minimum = 0;
             //timer1.Enabled = true;
             toolStripStatusLabel1.Visible = false;
-            
+            TB_LoginUsername.Text = ident;
         }
-        public string ident { get; set; }
 
+        
         private void BT_LoginLogin_Click(object sender, EventArgs e)
         {
             #region "Timer arguments"
