@@ -23,6 +23,20 @@ namespace Database
             OleDbCommand command = new OleDbCommand();
         }
 
+        private void BT_ClientSave_Click(object sender, EventArgs e)
+        {
+            //OleDbConnection connection = new OleDbConnection();
+            OleDbConnection connection =
+                new OleDbConnection(
+                    @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=A:\Users\Atul Anand Sinha\Documents\Visual Studio 2013\Projects\Database\Database.accdb;Persist Security Info=False");
+            connection.Open();
+            string height = TB_ClientHeight.Text;
+            string weight = TB_ClientWeight.Text;
+            string name = TB_ClientName.Text;
+            string bday = dateTimePicker1.Value.ToString("d//m/Y");
+
+        }
+
         
 
     }
