@@ -35,6 +35,18 @@ namespace Database
             string name = TB_ClientName.Text;
             string bday = dateTimePicker1.Value.ToString("d//m/Y");
 
+            OleDbCommand command =
+                new OleDbCommand(
+                    "INSERT INTO TPersons (Name, Height, Weight, Bday) VALUES (@name, @height, @weight, @bday)",
+                    connection);
+
+            if (connection.State == ConnectionState.Open)
+            {
+                command.Parameters.Add("@name", OleDbType.VarChar, 20).Value = name;
+                command.Parameters.Add("@height", OleDbType.Integer, 20).Value = height;
+
+            }
+
         }
 
         
