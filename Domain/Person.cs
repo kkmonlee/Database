@@ -9,11 +9,11 @@ namespace Domain
     public class Person
     {
         int id;
-        public int Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
+        public static int Id;
+        //{
+        //    get { return id; }
+        //    set { id = value; }
+        //}
         string userName;
 
         public string UserName

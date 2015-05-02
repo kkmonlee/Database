@@ -30,6 +30,8 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
             this.BT_ClientSave = new System.Windows.Forms.Button();
             this.TB_ClientWeight = new System.Windows.Forms.TextBox();
             this.LB_ClientWeight = new System.Windows.Forms.Label();
@@ -40,8 +42,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -55,7 +55,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(871, 583);
+            this.tabControl1.Size = new System.Drawing.Size(335, 224);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -73,14 +73,30 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(863, 557);
+            this.tabPage1.Size = new System.Drawing.Size(327, 198);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Settings";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(116, 88);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(186, 20);
+            this.dateTimePicker1.TabIndex = 10;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(62, 94);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Birthday:";
+            // 
             // BT_ClientSave
             // 
-            this.BT_ClientSave.Location = new System.Drawing.Point(227, 123);
+            this.BT_ClientSave.Location = new System.Drawing.Point(227, 142);
             this.BT_ClientSave.Name = "BT_ClientSave";
             this.BT_ClientSave.Size = new System.Drawing.Size(75, 23);
             this.BT_ClientSave.TabIndex = 8;
@@ -152,7 +168,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(863, 557);
+            this.tabPage2.Size = new System.Drawing.Size(327, 198);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Log";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -166,30 +182,16 @@
             this.tabPage3.Text = "Compare";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(62, 94);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 13);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Birthday:";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(116, 88);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(186, 20);
-            this.dateTimePicker1.TabIndex = 10;
-            // 
             // ClientMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(871, 583);
+            this.ClientSize = new System.Drawing.Size(335, 224);
             this.Controls.Add(this.tabControl1);
+            this.MinimumSize = new System.Drawing.Size(351, 263);
             this.Name = "ClientMain";
             this.Text = "ClientMain";
+            this.Load += new System.EventHandler(this.ClientMain_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

@@ -46,7 +46,7 @@ namespace Database
             //    new OleDbConnection(
             //        @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=A:\Users\Atul Anand Sinha\Documents\Visual Studio 2013\Projects\Database\Database.accdb;Persist Security Info=False");
             
-            using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=A:\Users\Atul Anand Sinha\Documents\Visual Studio 2013\Projects\Database\Database.accdb;Persist Security Info=False"))
+            using (OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=O:\Repos\Database\Database.accdb;Persist Security Info=False"))
             {
                 
                 if (!empId())
@@ -70,7 +70,7 @@ namespace Database
             using (
                 OleDbConnection connection =
                     new OleDbConnection(
-                        @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=A:\Users\Atul Anand Sinha\Documents\Visual Studio 2013\Projects\Database\Database.accdb;Persist Security Info=False")
+                        @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=O:\Repos\Database\Database.accdb;Persist Security Info=False")
                 )
             {
                 connection.Open();
@@ -129,16 +129,17 @@ namespace Database
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            Regex symbolPattern = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-£~¬`\s]");
+            //Regex symbolPattern = new Regex("^[a-zA-Z0-9]*$");
+            textBox1.Text = string.Concat(textBox1.Text.Where(char.IsLetterOrDigit));
 
-            MatchCollection matches = symbolPattern.Matches(textBox1.Text);
-            if (matches.Count > 0)
-            {
-                MessageBox.Show("You cannot use these characters!");
-                textBox1.Text = null;
-                textBox2.Text = null;
-                textBox3.Text = null;
-            }
+            //MatchCollection matches = symbolPattern.Matches(textBox1.Text);
+            //if (matches.Count > 0)
+            //{
+            //    MessageBox.Show("You cannot use these characters!");
+            //    textBox1.Text = null;
+            //    textBox2.Text = null;
+            //    textBox3.Text = null;
+            //}
             
         }
         private void textBox2_TextChanged(object sender, EventArgs e)
