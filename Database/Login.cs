@@ -68,7 +68,7 @@ namespace Database
 
                 usernameFromLogin = TB_LoginUsername.Text;
                 string constring =
-                    @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=O:\Repos\Database\Database.accdb;Persist Security Info=False";
+                    @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=A:\Users\Atul Anand Sinha\Documents\Visual Studio 2013\Projects\Database\Database.accdb;Persist Security Info=False";
                 OleDbConnection connection = new OleDbConnection(constring);
                 OleDbCommand command = new OleDbCommand("SELECT * FROM TPersons WHERE UserName='" + this.TB_LoginUsername.Text + "' AND PassWord='" + this.TB_LoginPassword.Text + "';", connection);
                 OleDbDataReader reader;
