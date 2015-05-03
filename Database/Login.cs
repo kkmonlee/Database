@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using System.Data.OleDb;
+using System.IO;
 using System.Security.AccessControl;
 using System.Runtime.InteropServices;
 using ADOX;
@@ -81,22 +82,43 @@ namespace Database
             #region "Create user arguments"
             try
             {
+                
                 #region "Create log database args"
+                
+
                 Catalog cat = new CatalogClass();
                 string cntPath = System.IO.Directory.GetCurrentDirectory();
                 string createStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + TB_LoginUsername.Text.ToLower() + "_LOG.accdb;";
-                cat.Create(createStr);
-                Table tbl = new Table();
-                tbl.Name = TB_LoginUsername.Text + "_SESSIONS";
-                tbl.Columns.Append("ID", DataTypeEnum.adGUID);
-                tbl.Columns.Append("Cycling", DataTypeEnum.adVarWChar, 25);
-                tbl.Columns.Append("Running", DataTypeEnum.adVarWChar, 25);
-                tbl.Columns.Append("Swimming", DataTypeEnum.adVarWChar, 25);
-                cat.Tables.Append(tbl);
-                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(tbl);
-                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat.Tables);
-                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat.ActiveConnection);
-                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat);
+                if (!File.Exists(cntPath + "\\" + TB_LoginUsername.Text.ToLower() + "_LOG.accdb"))
+                {
+                    cat.Create(createStr);
+                    Table tbl = new Table();
+                    tbl.Name = TB_LoginUsername.Text + "_SESSIONS";
+                    tbl.Columns.Append("ID", DataTypeEnum.adGUID);
+                    tbl.Columns.Append("Cycling", DataTypeEnum.adVarWChar, 25);
+                    tbl.Columns.Append("Running", DataTypeEnum.adVarWChar, 25);
+                    tbl.Columns.Append("Swimming", DataTypeEnum.adVarWChar, 25);
+                    cat.Tables.Append(tbl);
+                    System.Runtime.InteropServices.Marshal.FinalReleaseComObject(tbl);
+                    System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat.Tables);
+                    System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat.ActiveConnection);
+                    System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat);
+                }
+                else
+                {
+                    if (MessageBox.Show(
+                        "This database already exists! Delete it from /bin/*.accdb and try again \n\nClick Retry to restart the application.",
+                        "Error!",
+                        MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) == DialogResult.Retry)
+                    {
+                        Application.Restart();
+                    }
+                    else
+                    {
+                        this.Close();
+                    }
+                }
+                
                 #endregion
 
                 usernameFromLogin = TB_LoginUsername.Text;
