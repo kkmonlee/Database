@@ -20,6 +20,7 @@ namespace Database
 {
     public partial class ClientMain : Form
     {
+        int i = 1;
         #region "Variable declarations"
         public string usernamestringo;
         public string passwordstringo;
@@ -116,6 +117,7 @@ namespace Database
             ////can't close parent form from child, will try to make it invisible
             //loginForm.Visible = false;
             exerciseStyleComboBox.Enabled = false;
+            
             //try
             //{
             //    string tableName = usernamestringo + "_SESSIONS";
@@ -214,21 +216,51 @@ namespace Database
                 //                "Exercise Style: " + exerciseStyle + "\n");
                 #endregion
 
+                
+                //int id = i + 1;
+                
+
                 string exerciseTypeQuery = "[" + exerciseType + "]";
                 string totalTime = hourTime + ":" + minuteTime;
                 string insertQuery = date + " | " + totalTime + " | " + duration + " | " + exerciseStyle;
                 // string query = "UPDATE " + tableName + " SET " + exerciseTypeQuery + "=@exerciseQueries" + " WHERE UserName=@username";
                 // MessageBox.Show(query + "\n" + insertQuery + "\n" + exerciseTypeQuery + "\n" + totalTime + "\n" + usernamestringo + "\n ^ name");
-                
+
+                string otherExercise1 = null;
+                string otherExercise2 = null;
+                if (exerciseTypeQuery == "[Cycling]")
+                    {
+                        otherExercise1 = "[Running]";
+                        otherExercise2 = "[Swimming]";
+                    }
+                    else if (exerciseTypeQuery == "[Running]")
+                    {
+                        otherExercise1 = "[Cycling]";
+                        otherExercise2 = "[Swimming]";
+                    }
+                else if (exerciseTypeQuery == "[Swimming]")
+                {
+                    otherExercise1 = "[Running]";
+                    otherExercise2 = "[Cycling]";
+                }
+                const string empty = "";
                 string cntPath = System.IO.Directory.GetCurrentDirectory();
                 using (OleDbConnection myCon = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + usernamestringo.ToLower() + "_LOG.accdb;"))
                 using (OleDbCommand cmd = new OleDbCommand())
                 {
+
+
+                    i++;
+
                     cmd.CommandType = CommandType.Text;
-                    string query = "UPDATE " + tableName + " SET " + exerciseTypeQuery + "=@exerciseTypeQuery" + " WHERE UserName=@username";
+                    string query = "INSERT INTO " + tableName + " (" + exerciseTypeQuery + ", [ID], [UserName], " + otherExercise1 + "," + otherExercise2 + ") VALUES(@exerciseTypeQuery, @id, @username, @unusedExercise1, @unusedExercise2)";
                     cmd.CommandText = query;
                     cmd.Parameters.AddWithValue("@exerciseTypeQuery", insertQuery);
+                    cmd.Parameters.AddWithValue("@id", i.ToString());
                     cmd.Parameters.AddWithValue("@username", usernamestringo);
+                    cmd.Parameters.AddWithValue("@unusedExercise1", empty);
+                    cmd.Parameters.AddWithValue("@unusedExercise2", empty);
+
                     cmd.Connection = myCon;
                     myCon.Open();
                     cmd.ExecuteNonQuery();

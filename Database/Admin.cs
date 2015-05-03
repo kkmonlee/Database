@@ -34,6 +34,7 @@ namespace Database
             InitializeComponent();
             dataGridView1.ReadOnly = true;
             BT_AdminSave.Enabled = false;
+            
         }
 
         private void BT_AdminAdd_Click(object sender, EventArgs e)
@@ -113,7 +114,7 @@ namespace Database
 
         private void Admin_Load(object sender, EventArgs e)
         {
-
+            
         }
     }
 }
