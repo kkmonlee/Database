@@ -21,6 +21,9 @@ namespace Database
     public partial class ClientMain : Form
     {
         int i = 1;
+        private string Sql;
+        private OleDbConnection connection;
+        private OleDbDataAdapter oledbAdapter;
         #region "Variable declarations"
         public string usernamestringo;
         public string passwordstringo;
@@ -216,7 +219,7 @@ namespace Database
                 //                "Exercise Style: " + exerciseStyle + "\n");
                 #endregion
 
-                
+                #region "Adding session into log"
                 //int id = i + 1;
                 
 
@@ -268,7 +271,8 @@ namespace Database
                     cmd.Parameters.Clear();
 
                 }
-                 
+                #endregion
+
 
             }
             catch (OleDbException exception)
@@ -291,9 +295,47 @@ namespace Database
                 #endregion
         }
 
-        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string cntPath = System.IO.Directory.GetCurrentDirectory();
+            usernamestringo = Login.UsernameFromLogin;
+            string tableName = usernamestringo + "_SESSIONS";
 
-        
+            List<string> rawList = new List<string>();
+            int a;
+            int b;
+            connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + usernamestringo.ToLower() + "_LOG.accdb;");
+            Sql = "SELECT * FROM " + tableName;
+            
+            try
+            {
+                connection.Open();
+                oledbAdapter = new OleDbDataAdapter(Sql, connection);
+
+                DataSet dsSet = new DataSet();
+                oledbAdapter.Fill(dsSet);
+                foreach (DataRow row in dsSet.Tables[0].Rows)
+                {
+                    rawList.Add(row["Running"].ToString());
+                }
+                textBox1.Text = String.Join(Environment.NewLine, rawList);
+                // convert List<string> to single string
+                var show = String.Join(null, rawList.ToArray());
+                MessageBox.Show(show);
+                /*
+                String.Join(String.Empty, rawList.ToArray());
+                StringBuilder builder = new StringBuilder();
+                rawList.ForEach(s => builder.Append(s));
+                string display = rawList.Aggregate<string>((a, b) => a + b);
+                MessageBox.Show(display);
+                 */
+
+            }
+            catch (OleDbException exception)
+            {
+                MessageBox.Show(exception.ToString());
+            }
+        }
 
     }
 }

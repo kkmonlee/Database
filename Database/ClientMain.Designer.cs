@@ -41,6 +41,8 @@
             this.LB_ClientName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.BT_Reset = new System.Windows.Forms.Button();
+            this.BT_Log = new System.Windows.Forms.Button();
             this.exerciseStyleComboBox = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -55,11 +57,12 @@
             this.SessiondateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.BT_Log = new System.Windows.Forms.Button();
-            this.BT_Reset = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -204,6 +207,26 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Log";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // BT_Reset
+            // 
+            this.BT_Reset.Location = new System.Drawing.Point(87, 167);
+            this.BT_Reset.Name = "BT_Reset";
+            this.BT_Reset.Size = new System.Drawing.Size(75, 23);
+            this.BT_Reset.TabIndex = 16;
+            this.BT_Reset.Text = "Reset";
+            this.BT_Reset.UseVisualStyleBackColor = true;
+            this.BT_Reset.Click += new System.EventHandler(this.BT_Reset_Click);
+            // 
+            // BT_Log
+            // 
+            this.BT_Log.Location = new System.Drawing.Point(186, 167);
+            this.BT_Log.Name = "BT_Log";
+            this.BT_Log.Size = new System.Drawing.Size(75, 23);
+            this.BT_Log.TabIndex = 14;
+            this.BT_Log.Text = "Log";
+            this.BT_Log.UseVisualStyleBackColor = true;
+            this.BT_Log.Click += new System.EventHandler(this.BT_Log_Click);
             // 
             // exerciseStyleComboBox
             // 
@@ -414,6 +437,8 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button1);
+            this.tabPage3.Controls.Add(this.textBox1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(327, 198);
@@ -421,25 +446,23 @@
             this.tabPage3.Text = "Compare";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // BT_Log
+            // textBox1
             // 
-            this.BT_Log.Location = new System.Drawing.Point(186, 167);
-            this.BT_Log.Name = "BT_Log";
-            this.BT_Log.Size = new System.Drawing.Size(75, 23);
-            this.BT_Log.TabIndex = 14;
-            this.BT_Log.Text = "Log";
-            this.BT_Log.UseVisualStyleBackColor = true;
-            this.BT_Log.Click += new System.EventHandler(this.BT_Log_Click);
+            this.textBox1.Location = new System.Drawing.Point(8, 3);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(311, 155);
+            this.textBox1.TabIndex = 0;
             // 
-            // BT_Reset
+            // button1
             // 
-            this.BT_Reset.Location = new System.Drawing.Point(87, 167);
-            this.BT_Reset.Name = "BT_Reset";
-            this.BT_Reset.Size = new System.Drawing.Size(75, 23);
-            this.BT_Reset.TabIndex = 16;
-            this.BT_Reset.Text = "Reset";
-            this.BT_Reset.UseVisualStyleBackColor = true;
-            this.BT_Reset.Click += new System.EventHandler(this.BT_Reset_Click);
+            this.button1.Location = new System.Drawing.Point(244, 164);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ClientMain
             // 
@@ -456,6 +479,8 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -491,6 +516,8 @@
         private System.Windows.Forms.ComboBox exerciseStyleComboBox;
         private System.Windows.Forms.Button BT_Reset;
         private System.Windows.Forms.Button BT_Log;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
 
     }
 }
