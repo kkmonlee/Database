@@ -41,9 +41,23 @@
             this.LB_ClientName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.exerciseStyleComboBox = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.exerciseTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.TB_Duration = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.minuteComboBox = new System.Windows.Forms.ComboBox();
+            this.hourComboBox = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.SessiondateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -77,6 +91,7 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Settings";
             this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // dateTimePicker1
             // 
@@ -165,6 +180,19 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.exerciseStyleComboBox);
+            this.tabPage2.Controls.Add(this.label9);
+            this.tabPage2.Controls.Add(this.label8);
+            this.tabPage2.Controls.Add(this.exerciseTypeComboBox);
+            this.tabPage2.Controls.Add(this.label7);
+            this.tabPage2.Controls.Add(this.TB_Duration);
+            this.tabPage2.Controls.Add(this.label6);
+            this.tabPage2.Controls.Add(this.minuteComboBox);
+            this.tabPage2.Controls.Add(this.hourComboBox);
+            this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Controls.Add(this.label4);
+            this.tabPage2.Controls.Add(this.SessiondateTimePicker);
+            this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -173,11 +201,218 @@
             this.tabPage2.Text = "Log";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // exerciseStyleComboBox
+            // 
+            this.exerciseStyleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.exerciseStyleComboBox.FormattingEnabled = true;
+            this.exerciseStyleComboBox.Location = new System.Drawing.Point(123, 130);
+            this.exerciseStyleComboBox.Name = "exerciseStyleComboBox";
+            this.exerciseStyleComboBox.Size = new System.Drawing.Size(121, 21);
+            this.exerciseStyleComboBox.TabIndex = 13;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 133);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(112, 13);
+            this.label9.TabIndex = 12;
+            this.label9.Text = "Exercise Speed/Style:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(40, 106);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(77, 13);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "Exercise Type:";
+            // 
+            // exerciseTypeComboBox
+            // 
+            this.exerciseTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.exerciseTypeComboBox.FormattingEnabled = true;
+            this.exerciseTypeComboBox.Location = new System.Drawing.Point(123, 103);
+            this.exerciseTypeComboBox.Name = "exerciseTypeComboBox";
+            this.exerciseTypeComboBox.Size = new System.Drawing.Size(76, 21);
+            this.exerciseTypeComboBox.TabIndex = 10;
+            this.exerciseTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.exerciseTypeComboBox_SelectedIndexChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
+            this.label7.Location = new System.Drawing.Point(166, 80);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(33, 13);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "hours";
+            // 
+            // TB_Duration
+            // 
+            this.TB_Duration.Location = new System.Drawing.Point(124, 77);
+            this.TB_Duration.MaxLength = 2;
+            this.TB_Duration.Name = "TB_Duration";
+            this.TB_Duration.Size = new System.Drawing.Size(36, 20);
+            this.TB_Duration.TabIndex = 8;
+            this.TB_Duration.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(67, 80);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(50, 13);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Duration:";
+            // 
+            // minuteComboBox
+            // 
+            this.minuteComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.minuteComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.minuteComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.minuteComboBox.FormattingEnabled = true;
+            this.minuteComboBox.Items.AddRange(new object[] {
+            "00",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "50",
+            "51",
+            "52",
+            "53",
+            "54",
+            "55",
+            "56",
+            "57",
+            "58",
+            "59"});
+            this.minuteComboBox.Location = new System.Drawing.Point(177, 50);
+            this.minuteComboBox.Name = "minuteComboBox";
+            this.minuteComboBox.Size = new System.Drawing.Size(48, 21);
+            this.minuteComboBox.TabIndex = 6;
+            // 
+            // hourComboBox
+            // 
+            this.hourComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.hourComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.hourComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.hourComboBox.FormattingEnabled = true;
+            this.hourComboBox.Items.AddRange(new object[] {
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24"});
+            this.hourComboBox.Location = new System.Drawing.Point(123, 50);
+            this.hourComboBox.Name = "hourComboBox";
+            this.hourComboBox.Size = new System.Drawing.Size(48, 21);
+            this.hourComboBox.TabIndex = 5;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(84, 53);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(33, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Time:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(84, 26);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(33, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Date:";
+            // 
+            // SessiondateTimePicker
+            // 
+            this.SessiondateTimePicker.Location = new System.Drawing.Point(123, 20);
+            this.SessiondateTimePicker.Name = "SessiondateTimePicker";
+            this.SessiondateTimePicker.Size = new System.Drawing.Size(138, 20);
+            this.SessiondateTimePicker.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(99, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Log a session here:";
+            // 
             // tabPage3
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(863, 557);
+            this.tabPage3.Size = new System.Drawing.Size(327, 198);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Compare";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -195,6 +430,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -215,6 +452,19 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox minuteComboBox;
+        private System.Windows.Forms.ComboBox hourComboBox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker SessiondateTimePicker;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox TB_Duration;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox exerciseTypeComboBox;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox exerciseStyleComboBox;
 
     }
 }

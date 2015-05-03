@@ -5,11 +5,13 @@ using System.Data;
 using System.Data.OleDb;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using Domain;
 using Sessionator;
 
@@ -20,17 +22,33 @@ namespace Database
     {
         public string usernamestringo;
         public string passwordstringo;
+        private string[] exerciseTypeRange = new[] {"Cycling", "Running", "Swimming"};
+
+        private string[] cyclingStyleRange = new[]
+        {
+            "<10 mph, leisure cycling", "10 - 11.9 mph, gentle", "12 - 13.9 mph, moderate", "14 - 15.9 mph, vigorous",
+            "16 - 20 mph, very fast", ">20 mph, racing"
+        };
+
+        private string[] runningSpeedRange = new[] {"5 mph", "6 mph", "7 mph", "8 mph", "9 mph", "10 mph"};
+
+        private string[] swimmingStyleRange = new[]
+        {"Freestyle, slow", "Freestyle, fast", "Backstroke", "Breaststroke", "Butterfly"};
+
+
         public ClientMain()
         {
             
             InitializeComponent();
-            
+            exerciseTypeComboBox.SelectedIndexChanged += exerciseTypeComboBox_SelectedIndexChanged;
+            exerciseTypeComboBox.Items.AddRange(exerciseTypeRange);
+
             //Login signin = new Login(ident);
             //signin.Show();
-            
-            
-        }
 
+
+        }
+        #region "Update tab args"
         private void BT_ClientSave_Click(object sender, EventArgs e)
         {
             try
@@ -45,7 +63,7 @@ namespace Database
                 int weightint = Convert.ToInt32(weight);
                 // MessageBox.Show(bdint.ToString());
    
-                usernamestringo = Login.usernameFromLogin;
+                usernamestringo = Login.UsernameFromLogin;
                 passwordstringo = Login.passwordFromLogin;
 
                 
@@ -89,11 +107,54 @@ namespace Database
                 MessageBox.Show(errorMessages.ToString());
             }
         }
-
+        #endregion
         private void ClientMain_Load(object sender, EventArgs e)
+        {
+            //var loginForm = new Login();
+            ////loginForm.Close();
+            ////can't close parent form from child, will try to make it invisible
+            //loginForm.Visible = false;
+            exerciseStyleComboBox.Enabled = false;
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            TB_Duration.Text = string.Concat(TB_Duration.Text.Where(char.IsDigit));
+            // form validation, stops from entering anything else other than digits
+        }
+
+        private void exerciseTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedValue = exerciseTypeComboBox.SelectedItem as string;
+            // converts the item in the combo box ie. the sport to a string and then uses that to change the
+            // options for the second combobox :)
+            exerciseStyleComboBox.Enabled = true;
+            switch (selectedValue)
+            {
+                case  "Cycling":
+                    exerciseStyleComboBox.Items.Clear();
+                    exerciseStyleComboBox.Items.AddRange(cyclingStyleRange);
+                    break;
+
+                case "Running":
+                    exerciseStyleComboBox.Items.Clear();
+                    exerciseStyleComboBox.Items.AddRange(runningSpeedRange);
+                    break;
+
+                case "Swimming":
+                    exerciseStyleComboBox.Items.Clear();
+                    exerciseStyleComboBox.Items.AddRange(swimmingStyleRange);
+                    break;
+            }
+            
+        }
+
+        
 
         
 
