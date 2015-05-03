@@ -170,12 +170,26 @@ namespace Database
             try
             {
                 string date = SessiondateTimePicker.Value.ToString("dd-MM-yyyy");
-                string hourTime = hourComboBox.SelectedIndex.ToString();
+                //string hourTime = hourComboBox.SelectedIndex.ToString();
+                int hourTime = int.Parse(hourComboBox.SelectedItem.ToString());
+                
                 // BUG: hourTime returns value of (hour - 1)
-                string minuteTime = minuteComboBox.SelectedIndex.ToString();
+                // BUG FIXED: parsed hourTime as an integer
+
+                int minuteTime = int.Parse(minuteComboBox.SelectedItem.ToString());
 
                 // check where the problem is
-                MessageBox.Show(hourTime + " " + minuteTime);
+                //MessageBox.Show(hourTime + " " + minuteTime);
+                int duration = int.Parse(TB_Duration.Text);
+                string exerciseType = exerciseTypeComboBox.SelectedItem.ToString();
+                string exerciseStyle = exerciseStyleComboBox.SelectedItem.ToString();
+
+                MessageBox.Show("Date " + date + "\n" +
+                                "Time: " + hourTime + ":" + minuteTime + "\n" +
+                                "Duration: " + duration + "\n" +
+                                "Exercise Type: " + exerciseType + "\n" +
+                                "Exercise Style: " + exerciseStyle + "\n");
+
             }
             catch 
             {
