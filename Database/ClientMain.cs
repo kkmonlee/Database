@@ -169,6 +169,10 @@ namespace Database
         {
             try
             {
+                #region "Log tab args"
+                #region "Declaring/testing variables
+
+                string tableName = usernamestringo + "_SESSIONS";
                 string date = SessiondateTimePicker.Value.ToString("dd-MM-yyyy");
                 //string hourTime = hourComboBox.SelectedIndex.ToString();
                 int hourTime = int.Parse(hourComboBox.SelectedItem.ToString());
@@ -189,12 +193,22 @@ namespace Database
                                 "Duration: " + duration + "\n" +
                                 "Exercise Type: " + exerciseType + "\n" +
                                 "Exercise Style: " + exerciseStyle + "\n");
+                #endregion
 
+                string cntPath = System.IO.Directory.GetCurrentDirectory();
+                using (OleDbConnection myCon = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + usernamestringo.ToLower() + "_LOG.accdb;"))
+                using (OleDbCommand cmd = new OleDbCommand())
+                {
+                    cmd.CommandType = CommandType.Text;
+                    string query = "UPDATE " + tableName + " SET []";
+                }
             }
             catch 
             {
-                
+
             }
+
+                #endregion
         }
 
         
