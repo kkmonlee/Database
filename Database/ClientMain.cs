@@ -20,21 +20,22 @@ namespace Database
 {
     public partial class ClientMain : Form
     {
+        #region "Variable declarations"
         public string usernamestringo;
         public string passwordstringo;
-        private string[] exerciseTypeRange = new[] {"Cycling", "Running", "Swimming"};
+        private readonly string[] exerciseTypeRange = new[] {"Cycling", "Running", "Swimming"};
 
-        private string[] cyclingStyleRange = new[]
+        private readonly string[] cyclingStyleRange = new[]
         {
             "<10 mph, leisure cycling", "10 - 11.9 mph, gentle", "12 - 13.9 mph, moderate", "14 - 15.9 mph, vigorous",
             "16 - 20 mph, very fast", ">20 mph, racing"
         };
 
-        private string[] runningSpeedRange = new[] {"5 mph", "6 mph", "7 mph", "8 mph", "9 mph", "10 mph"};
+        private readonly string[] runningSpeedRange = new[] {"5 mph", "6 mph", "7 mph", "8 mph", "9 mph", "10 mph"};
 
-        private string[] swimmingStyleRange = new[]
+        private readonly string[] swimmingStyleRange = new[]
         {"Freestyle, slow", "Freestyle, fast", "Backstroke", "Breaststroke", "Butterfly"};
-
+        #endregion
 
         public ClientMain()
         {
@@ -152,6 +153,21 @@ namespace Database
                     break;
             }
             
+        }
+
+        private void BT_Reset_Click(object sender, EventArgs e)
+        {
+            SessiondateTimePicker.ResetText();
+            hourComboBox.SelectedIndex = -1;
+            minuteComboBox.SelectedIndex = -1;
+            TB_Duration.Text = null;
+            exerciseStyleComboBox.SelectedIndex = -1;
+            exerciseTypeComboBox.SelectedIndex = -1;
+        }
+
+        private void BT_Log_Click(object sender, EventArgs e)
+        {
+
         }
 
         

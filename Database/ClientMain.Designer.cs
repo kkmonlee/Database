@@ -55,6 +55,8 @@
             this.SessiondateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.BT_Log = new System.Windows.Forms.Button();
+            this.BT_Reset = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -180,6 +182,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.BT_Reset);
+            this.tabPage2.Controls.Add(this.BT_Log);
             this.tabPage2.Controls.Add(this.exerciseStyleComboBox);
             this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Controls.Add(this.label8);
@@ -417,6 +421,26 @@
             this.tabPage3.Text = "Compare";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // BT_Log
+            // 
+            this.BT_Log.Location = new System.Drawing.Point(186, 167);
+            this.BT_Log.Name = "BT_Log";
+            this.BT_Log.Size = new System.Drawing.Size(75, 23);
+            this.BT_Log.TabIndex = 14;
+            this.BT_Log.Text = "Log";
+            this.BT_Log.UseVisualStyleBackColor = true;
+            this.BT_Log.Click += new System.EventHandler(this.BT_Log_Click);
+            // 
+            // BT_Reset
+            // 
+            this.BT_Reset.Location = new System.Drawing.Point(87, 167);
+            this.BT_Reset.Name = "BT_Reset";
+            this.BT_Reset.Size = new System.Drawing.Size(75, 23);
+            this.BT_Reset.TabIndex = 16;
+            this.BT_Reset.Text = "Reset";
+            this.BT_Reset.UseVisualStyleBackColor = true;
+            this.BT_Reset.Click += new System.EventHandler(this.BT_Reset_Click);
+            // 
             // ClientMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -465,6 +489,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox exerciseStyleComboBox;
+        private System.Windows.Forms.Button BT_Reset;
+        private System.Windows.Forms.Button BT_Log;
 
     }
 }
