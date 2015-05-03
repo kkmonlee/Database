@@ -79,5 +79,14 @@ namespace Database.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loaded!.
+        /// </summary>
+        internal static string Login_timer1_Tick_Loaded_ {
+            get {
+                return ResourceManager.GetString("Login_timer1_Tick_Loaded_", resourceCulture);
+            }
+        }
     }
 }

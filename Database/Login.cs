@@ -97,11 +97,11 @@ namespace Database
                     Table tbl = new Table();
                     tbl.Name = TB_LoginUsername.Text + "_SESSIONS";
                     tbl.Columns.Append("ID", DataTypeEnum.adInteger);
-                    tbl.Columns.Append("UserName", DataTypeEnum.adVarWChar, 25);
+                    tbl.Columns.Append("UserName", DataTypeEnum.adVarWChar, 50);
                    // ClientMain.Load() will update UserName to TB_LoginUsername.Text or usernamestringo if you will
-                    tbl.Columns.Append("Cycling", DataTypeEnum.adVarWChar, 25);
-                    tbl.Columns.Append("Running", DataTypeEnum.adVarWChar, 25);
-                    tbl.Columns.Append("Swimming", DataTypeEnum.adVarWChar, 25);
+                    tbl.Columns.Append("Cycling", DataTypeEnum.adVarWChar, 50);
+                    tbl.Columns.Append("Running", DataTypeEnum.adVarWChar, 50);
+                    tbl.Columns.Append("Swimming", DataTypeEnum.adVarWChar, 50);
                     cat.Tables.Append(tbl);
                     System.Runtime.InteropServices.Marshal.FinalReleaseComObject(tbl);
                     System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat.Tables);
@@ -154,17 +154,17 @@ namespace Database
                 }
                 else
                 {
-                    if (MessageBox.Show(
-                        "This database already exists! Delete it from /bin/*.accdb and try again \n\nClick Retry to restart the application.",
-                        "Error!",
-                        MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) == DialogResult.Retry)
-                    {
-                        Application.Restart();
-                    }
-                    else
-                    {
-                        this.Close();
-                    }
+                    //if (MessageBox.Show(
+                    //    "This database already exists! Delete it from /bin/*.accdb and try again \n\nClick Retry to restart the application.",
+                    //    "Error!",
+                    //    MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) == DialogResult.Retry)
+                    //{
+                    //    Application.Restart();
+                    //}
+                    //else
+                    //{
+                    //    this.Close();
+                    //}
                 }
                 
                 #endregion

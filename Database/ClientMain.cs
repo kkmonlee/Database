@@ -190,6 +190,7 @@ namespace Database
                 #region "Log tab args"
                 #region "Declaring/testing variables
 
+                usernamestringo = Login.UsernameFromLogin;
                 string tableName = usernamestringo + "_SESSIONS";
                 string date = SessiondateTimePicker.Value.ToString("dd-MM-yyyy");
                 //string hourTime = hourComboBox.SelectedIndex.ToString();
@@ -206,24 +207,53 @@ namespace Database
                 string exerciseType = exerciseTypeComboBox.SelectedItem.ToString();
                 string exerciseStyle = exerciseStyleComboBox.SelectedItem.ToString();
 
-                MessageBox.Show("Date " + date + "\n" +
-                                "Time: " + hourTime + ":" + minuteTime + "\n" +
-                                "Duration: " + duration + "\n" +
-                                "Exercise Type: " + exerciseType + "\n" +
-                                "Exercise Style: " + exerciseStyle + "\n");
+                //MessageBox.Show("Date " + date + "\n" +
+                //                "Time: " + hourTime + ":" + minuteTime + "\n" +
+                //                "Duration: " + duration + "\n" +
+                //                "Exercise Type: " + exerciseType + "\n" +
+                //                "Exercise Style: " + exerciseStyle + "\n");
                 #endregion
 
-                //string cntPath = System.IO.Directory.GetCurrentDirectory();
-                //using (OleDbConnection myCon = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + usernamestringo.ToLower() + "_LOG.accdb;"))
-                //using (OleDbCommand cmd = new OleDbCommand())
-                //{
-                //    cmd.CommandType = CommandType.Text;
-                //    string query = "UPDATE " + tableName + " SET []";
-                //}
-            }
-            catch 
-            {
+                string exerciseTypeQuery = "[" + exerciseType + "]";
+                string totalTime = hourTime + ":" + minuteTime;
+                string insertQuery = date + " | " + totalTime + " | " + duration + " | " + exerciseStyle;
+                // string query = "UPDATE " + tableName + " SET " + exerciseTypeQuery + "=@exerciseQueries" + " WHERE UserName=@username";
+                // MessageBox.Show(query + "\n" + insertQuery + "\n" + exerciseTypeQuery + "\n" + totalTime + "\n" + usernamestringo + "\n ^ name");
+                
+                string cntPath = System.IO.Directory.GetCurrentDirectory();
+                using (OleDbConnection myCon = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + usernamestringo.ToLower() + "_LOG.accdb;"))
+                using (OleDbCommand cmd = new OleDbCommand())
+                {
+                    cmd.CommandType = CommandType.Text;
+                    string query = "UPDATE " + tableName + " SET " + exerciseTypeQuery + "=@exerciseTypeQuery" + " WHERE UserName=@username";
+                    cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@exerciseTypeQuery", insertQuery);
+                    cmd.Parameters.AddWithValue("@username", usernamestringo);
+                    cmd.Connection = myCon;
+                    myCon.Open();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Logged in!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cmd.Parameters.Clear();
 
+                }
+                 
+
+            }
+            catch (OleDbException exception)
+            {
+                string errorMessages = "";
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    var oleDbError = exception.Errors[i];
+                    if (oleDbError != null)
+                        errorMessages += "Index #" + i + "\n" +
+                                         "NativeError: " + oleDbError.NativeError + "\n" +
+                                         "Source: " + oleDbError.Source + "\n" +
+                                         "SQLState: " + oleDbError.SQLState + "\n" +
+                                         "Description: " + oleDbError.Message + "\n \n" +
+                                         "Please consult with the software developer.";
+                }
+                MessageBox.Show(errorMessages.ToString());
             }
 
                 #endregion
