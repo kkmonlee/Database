@@ -228,20 +228,20 @@ namespace Database
 
                 string otherExercise1 = null;
                 string otherExercise2 = null;
-                if (exerciseTypeQuery == "[Cycling]")
-                    {
+                switch (exerciseTypeQuery)
+                {
+                    case "[Cycling]":
                         otherExercise1 = "[Running]";
                         otherExercise2 = "[Swimming]";
-                    }
-                    else if (exerciseTypeQuery == "[Running]")
-                    {
+                        break;
+                    case "[Running]":
                         otherExercise1 = "[Cycling]";
                         otherExercise2 = "[Swimming]";
-                    }
-                else if (exerciseTypeQuery == "[Swimming]")
-                {
-                    otherExercise1 = "[Running]";
-                    otherExercise2 = "[Cycling]";
+                        break;
+                    case "[Swimming]":
+                        otherExercise1 = "[Running]";
+                        otherExercise2 = "[Cycling]";
+                        break;
                 }
                 const string empty = "";
                 string cntPath = System.IO.Directory.GetCurrentDirectory();
