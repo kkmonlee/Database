@@ -302,8 +302,8 @@ namespace Database
             string tableName = usernamestringo + "_SESSIONS";
 
             List<string> rawList = new List<string>();
-            int a;
-            int b;
+            //int a;
+            //int b;
             connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + usernamestringo.ToLower() + "_LOG.accdb;");
             Sql = "SELECT * FROM " + tableName;
             

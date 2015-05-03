@@ -19,13 +19,13 @@ namespace Database
     {
         private Worker w = new Worker();
 
-        string connectionString;
+        //string connectionString;
         OleDbConnection connection;
         OleDbDataAdapter oledbAdapter;
         OleDbCommandBuilder oledbCmdBuilder;
         private DataSet ds = new DataSet();
         private DataSet changes;
-        int i;
+        //int i;
         string Sql;
 
 
