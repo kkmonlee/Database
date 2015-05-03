@@ -74,6 +74,7 @@ namespace Database
 
         private void BT_LoginLogin_Click(object sender, EventArgs e)
         {
+            int a = 0;
             #region "Timer arguments"
             this.timer1.Start();
             toolStripStatusLabel1.Visible = true;
@@ -83,6 +84,7 @@ namespace Database
             try
             {
                 
+                a += 1;
                 #region "Create log database args"
                 
 
@@ -94,7 +96,9 @@ namespace Database
                     cat.Create(createStr);
                     Table tbl = new Table();
                     tbl.Name = TB_LoginUsername.Text + "_SESSIONS";
-                    tbl.Columns.Append("ID", DataTypeEnum.adGUID);
+                    tbl.Columns.Append("ID", DataTypeEnum.adInteger);
+                    tbl.Columns.Append("UserName", DataTypeEnum.adVarWChar, 25);
+                   // ClientMain.Load() will update UserName to TB_LoginUsername.Text or usernamestringo if you will
                     tbl.Columns.Append("Cycling", DataTypeEnum.adVarWChar, 25);
                     tbl.Columns.Append("Running", DataTypeEnum.adVarWChar, 25);
                     tbl.Columns.Append("Swimming", DataTypeEnum.adVarWChar, 25);
@@ -103,6 +107,50 @@ namespace Database
                     System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat.Tables);
                     System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat.ActiveConnection);
                     System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat);
+                    /*
+                     * Inserting UserName into Row
+                     */
+                    try
+                    {
+                        string empty = "";
+                        ////int emptyInt = int.Parse(empty);
+                        //int? emptyInt = null; // using nullable int
+                        //int empInt = 0;
+                        string tableau = TB_LoginUsername.Text + "_SESSIONS";
+                        string usernametostring = TB_LoginUsername.Text.ToString();
+                        string startPath = System.IO.Directory.GetCurrentDirectory();
+                        OleDbConnection myCon =
+                            new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + startPath + "\\" +
+                                                TB_LoginUsername.Text.ToLower() + "_LOG.accdb;");
+                        OleDbCommand cmd = new OleDbCommand();
+                        
+                        cmd.CommandType = CommandType.Text;
+                        string query = "INSERT INTO " + tableau + " ([UserName], [ID], [Cycling], [Running], [Swimming]) VALUES(@username, @id, @cycling, @running, @swimming)";
+                        cmd.CommandText = query;
+                        cmd.Parameters.AddWithValue("@username", usernametostring);
+                        cmd.Parameters.AddWithValue("@id", a);
+                        // Has to be parsed otherwise @id returns a hash value (eg. {00000000-CF60-05B3-B1D6-020F00000000})
+                        // Nope, I accidentally used DataTypeEnum.adGUID thinking that it would be the most suitable for an ID variable
+                        // adInteger is way more better!
+                        cmd.Parameters.AddWithValue("@cycling", empty);
+                        cmd.Parameters.AddWithValue("@running", empty);
+                        cmd.Parameters.AddWithValue("@swimming", empty);
+                        // We don't want anything in the sports coloumns yet as that will be updated in ClientMain.Log()
+                        // We just want the username so ClientMain.BT_Log() can find is using WHERE
+                        cmd.Connection = myCon;
+                        myCon.Open();
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Username has been entered in your session database!");
+                        cmd.Parameters.Clear();
+                        //myCon.Dispose();
+                        
+                    }
+                    catch (OleDbException ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                    
+                    
                 }
                 else
                 {
@@ -156,6 +204,7 @@ namespace Database
                              * ShowDialog is amazing!
                              */
                             clientForm.ShowDialog();
+                            connection.Dispose();
                         }
                         else
                         {

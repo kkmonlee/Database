@@ -116,6 +116,21 @@ namespace Database
             ////can't close parent form from child, will try to make it invisible
             //loginForm.Visible = false;
             exerciseStyleComboBox.Enabled = false;
+            //try
+            //{
+            //    string tableName = usernamestringo + "_SESSIONS";
+            //    string cntPath = System.IO.Directory.GetCurrentDirectory();
+            //    using (OleDbConnection myCon = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + usernamestringo.ToLower() + "_LOG.accdb;"))
+            //    using (OleDbCommand cmd = new OleDbCommand())
+            //    {
+            //        cmd.CommandType = CommandType.Text;
+            //        string query = "UPDATE " + tableName + " SET [UserName]=@username";
+            //    }
+            //}
+            //catch
+            //{
+                
+            //}
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -157,12 +172,15 @@ namespace Database
 
         private void BT_Reset_Click(object sender, EventArgs e)
         {
+            #region "Reset button args
             SessiondateTimePicker.ResetText();
             hourComboBox.SelectedIndex = -1;
             minuteComboBox.SelectedIndex = -1;
             TB_Duration.Text = null;
             exerciseStyleComboBox.SelectedIndex = -1;
             exerciseTypeComboBox.SelectedIndex = -1;
+            #endregion
+
         }
 
         private void BT_Log_Click(object sender, EventArgs e)
@@ -195,13 +213,13 @@ namespace Database
                                 "Exercise Style: " + exerciseStyle + "\n");
                 #endregion
 
-                string cntPath = System.IO.Directory.GetCurrentDirectory();
-                using (OleDbConnection myCon = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + usernamestringo.ToLower() + "_LOG.accdb;"))
-                using (OleDbCommand cmd = new OleDbCommand())
-                {
-                    cmd.CommandType = CommandType.Text;
-                    string query = "UPDATE " + tableName + " SET []";
-                }
+                //string cntPath = System.IO.Directory.GetCurrentDirectory();
+                //using (OleDbConnection myCon = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + usernamestringo.ToLower() + "_LOG.accdb;"))
+                //using (OleDbCommand cmd = new OleDbCommand())
+                //{
+                //    cmd.CommandType = CommandType.Text;
+                //    string query = "UPDATE " + tableName + " SET []";
+                //}
             }
             catch 
             {
