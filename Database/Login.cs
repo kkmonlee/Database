@@ -30,13 +30,14 @@ namespace Database
 
     public partial class Login : Form
     {
-
+        
         public static string usernameFromLogin;
         public static string passwordFromLogin;
 
         public Login()
         {
             InitializeComponent();
+            
         }
 
         public Login(string ident)
@@ -54,7 +55,13 @@ namespace Database
             TB_LoginUsername.Text = ident;
         }
 
-        
+        public static string UsernameFromLogin
+        {
+            get { return usernameFromLogin; }
+            set { usernameFromLogin = value; }
+        }
+
+
         private void BT_LoginLogin_Click(object sender, EventArgs e)
         {
             #region "Timer arguments"
@@ -62,7 +69,7 @@ namespace Database
             toolStripStatusLabel1.Visible = true;
             toolStripStatusLabel1.Text = "Loading";
             #endregion
-
+            #region "Create user arguments"
             try
             {
 
@@ -82,9 +89,32 @@ namespace Database
                     }
                     if (count == 1)
                     {
-                        MessageBox.Show("Login successful!");
-                        var clientForm = new ClientMain();
-                        clientForm.Show();
+                        if (
+                            MessageBox.Show("Login successful!", "Success!", MessageBoxButtons.OK,
+                                MessageBoxIcon.Information) == DialogResult.OK)
+                        {
+                            var clientForm = new ClientMain();
+                            ////var loginForm = new Login();
+                            //clientForm.Show();
+                            ////loginForm.Close();
+                            ////raises exceptions, will use this in clientForm.Load()
+                            ////i'll just disable this form
+                            //foreach (Control c in Controls)
+                            //{
+                            //    c.Enabled = false;
+                            //}
+
+                            /*
+                             * ShowDialog is amazing!
+                             */
+                            clientForm.ShowDialog();
+                        }
+                        else
+                        {
+                            MessageBox.Show("You should've clicked OK. :(");
+
+                        }
+                       
                         
                     }
                     else if (count > 1)
@@ -120,7 +150,7 @@ namespace Database
                 Console.WriteLine(errorMessages);
                 throw;
             }
-
+            #endregion
 
         }
 
@@ -190,6 +220,35 @@ namespace Database
 
         }
 
+        private void TB_LoginPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                BT_LoginLogin.PerformClick();
+                // time to stop the handling errors
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+            }
+        }
+
+        private void TB_LoginUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                BT_LoginLogin.PerformClick();
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+            }
+        }
+
+        private void BT_LoginLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            BT_LoginLogin.PerformClick();
+            e.SuppressKeyPress = true;
+            e.Handled = true;
+        }
+
+        
 
     }
 }

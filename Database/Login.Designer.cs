@@ -60,6 +60,7 @@
             this.TB_LoginUsername.Name = "TB_LoginUsername";
             this.TB_LoginUsername.Size = new System.Drawing.Size(208, 20);
             this.TB_LoginUsername.TabIndex = 1;
+            this.TB_LoginUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_LoginUsername_KeyDown);
             // 
             // LB_LoginUsername
             // 
@@ -85,6 +86,7 @@
             this.TB_LoginPassword.Name = "TB_LoginPassword";
             this.TB_LoginPassword.Size = new System.Drawing.Size(208, 20);
             this.TB_LoginPassword.TabIndex = 4;
+            this.TB_LoginPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_LoginPassword_KeyDown);
             // 
             // LB_LoginRegister
             // 
@@ -106,6 +108,7 @@
             this.BT_LoginLogin.Text = "Sign in";
             this.BT_LoginLogin.UseVisualStyleBackColor = true;
             this.BT_LoginLogin.Click += new System.EventHandler(this.BT_LoginLogin_Click);
+            this.BT_LoginLogin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BT_LoginLogin_KeyDown);
             // 
             // timer1
             // 
