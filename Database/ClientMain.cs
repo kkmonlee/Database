@@ -318,7 +318,7 @@ namespace Database
                 {
                     rawList.Add(row["Running"].ToString());
                 }
-                textBox1.Text = String.Join(Environment.NewLine, rawList);
+                
                 // convert List<string> to single string
                 var show = String.Join(null, rawList.ToArray());
                 MessageBox.Show(show);

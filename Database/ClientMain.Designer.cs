@@ -57,12 +57,16 @@
             this.SessiondateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabCycling = new System.Windows.Forms.TabPage();
+            this.tabRunning = new System.Windows.Forms.TabPage();
+            this.tabSwimming = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabControl2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -74,7 +78,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(335, 224);
+            this.tabControl1.Size = new System.Drawing.Size(537, 398);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -437,26 +441,18 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.tabControl2);
             this.tabPage3.Controls.Add(this.button1);
-            this.tabPage3.Controls.Add(this.textBox1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(327, 198);
+            this.tabPage3.Size = new System.Drawing.Size(529, 372);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Compare";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(8, 3);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(311, 155);
-            this.textBox1.TabIndex = 0;
-            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(244, 164);
+            this.button1.Location = new System.Drawing.Point(446, 341);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -464,11 +460,52 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // tabControl2
+            // 
+            this.tabControl2.Controls.Add(this.tabCycling);
+            this.tabControl2.Controls.Add(this.tabRunning);
+            this.tabControl2.Controls.Add(this.tabSwimming);
+            this.tabControl2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabControl2.Location = new System.Drawing.Point(0, 0);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(529, 187);
+            this.tabControl2.TabIndex = 2;
+            // 
+            // tabCycling
+            // 
+            this.tabCycling.Location = new System.Drawing.Point(4, 22);
+            this.tabCycling.Name = "tabCycling";
+            this.tabCycling.Padding = new System.Windows.Forms.Padding(3);
+            this.tabCycling.Size = new System.Drawing.Size(521, 161);
+            this.tabCycling.TabIndex = 0;
+            this.tabCycling.Text = "Cycling";
+            this.tabCycling.UseVisualStyleBackColor = true;
+            // 
+            // tabRunning
+            // 
+            this.tabRunning.Location = new System.Drawing.Point(4, 22);
+            this.tabRunning.Name = "tabRunning";
+            this.tabRunning.Padding = new System.Windows.Forms.Padding(3);
+            this.tabRunning.Size = new System.Drawing.Size(521, 177);
+            this.tabRunning.TabIndex = 1;
+            this.tabRunning.Text = "Running";
+            this.tabRunning.UseVisualStyleBackColor = true;
+            // 
+            // tabSwimming
+            // 
+            this.tabSwimming.Location = new System.Drawing.Point(4, 22);
+            this.tabSwimming.Name = "tabSwimming";
+            this.tabSwimming.Size = new System.Drawing.Size(521, 177);
+            this.tabSwimming.TabIndex = 2;
+            this.tabSwimming.Text = "Swimming";
+            this.tabSwimming.UseVisualStyleBackColor = true;
+            // 
             // ClientMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 224);
+            this.ClientSize = new System.Drawing.Size(537, 398);
             this.Controls.Add(this.tabControl1);
             this.MinimumSize = new System.Drawing.Size(351, 263);
             this.Name = "ClientMain";
@@ -480,7 +517,7 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tabControl2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -517,7 +554,10 @@
         private System.Windows.Forms.Button BT_Reset;
         private System.Windows.Forms.Button BT_Log;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tabCycling;
+        private System.Windows.Forms.TabPage tabRunning;
+        private System.Windows.Forms.TabPage tabSwimming;
 
     }
 }
