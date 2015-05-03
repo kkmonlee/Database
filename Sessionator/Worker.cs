@@ -9,6 +9,7 @@ using System.Data.Common;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Windows;
+using ADOX;
 
 
 namespace Sessionator
@@ -17,7 +18,8 @@ namespace Sessionator
     {
         OleDbConnection connection;
         OleDbCommand command;
-
+        
+        
         private void ConnectTo()
         {
             connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=A:\Users\Atul Anand Sinha\Documents\Visual Studio 2013\Projects\Database\Database.accdb;Persist Security Info=False");

@@ -12,7 +12,10 @@ using System.Windows.Forms.VisualStyles;
 using System.Data.OleDb;
 using System.Security.AccessControl;
 using System.Runtime.InteropServices;
+using ADOX;
 using Domain;
+using Microsoft;
+using Keys = System.Windows.Forms.Keys;
 
 
 namespace Database
@@ -33,6 +36,7 @@ namespace Database
         
         public static string usernameFromLogin;
         public static string passwordFromLogin;
+        
 
         public Login()
         {
@@ -53,6 +57,11 @@ namespace Database
             //timer1.Enabled = true;
             toolStripStatusLabel1.Visible = false;
             TB_LoginUsername.Text = ident;
+            /*
+             * Create a session database for every user
+             */
+            //string sessionDb = @"A:\Users\Atul Anand Sinha\Documents\Visual Studio 2013\Projects\Database\" + TB_LoginUsername.Text.ToString() + ".accdb";
+            //Microsoft.Office.Interop.Access.Application;
         }
 
         public static string UsernameFromLogin
@@ -72,6 +81,23 @@ namespace Database
             #region "Create user arguments"
             try
             {
+                #region "Create log database args"
+                Catalog cat = new CatalogClass();
+                string cntPath = System.IO.Directory.GetCurrentDirectory();
+                string createStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + TB_LoginUsername.Text.ToLower() + "_LOG.accdb;";
+                cat.Create(createStr);
+                Table tbl = new Table();
+                tbl.Name = TB_LoginUsername.Text + "_SESSIONS";
+                tbl.Columns.Append("ID", DataTypeEnum.adGUID);
+                tbl.Columns.Append("Cycling", DataTypeEnum.adVarWChar, 25);
+                tbl.Columns.Append("Running", DataTypeEnum.adVarWChar, 25);
+                tbl.Columns.Append("Swimming", DataTypeEnum.adVarWChar, 25);
+                cat.Tables.Append(tbl);
+                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(tbl);
+                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat.Tables);
+                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat.ActiveConnection);
+                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat);
+                #endregion
 
                 usernameFromLogin = TB_LoginUsername.Text;
                 string constring =
@@ -144,13 +170,12 @@ namespace Database
                           "SQLState: " + exception.Errors[i].SQLState + "\n";
                 }
 
-                System.Diagnostics.EventLog log = new System.Diagnostics.EventLog();
-                log.Source = "My Application";
-                log.WriteEntry(errorMessages);
-                Console.WriteLine(errorMessages);
+                MessageBox.Show(errorMessages);
                 throw;
             }
             #endregion
+            
+
 
         }
 

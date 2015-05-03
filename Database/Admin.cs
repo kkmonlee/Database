@@ -110,5 +110,10 @@ namespace Database
             dataGridView1.DataSource = null;
 
         }
+
+        private void Admin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
