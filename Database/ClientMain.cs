@@ -167,7 +167,20 @@ namespace Database
 
         private void BT_Log_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string date = SessiondateTimePicker.Value.ToString("dd-MM-yyyy");
+                string hourTime = hourComboBox.SelectedIndex.ToString();
+                // BUG: hourTime returns value of (hour - 1)
+                string minuteTime = minuteComboBox.SelectedIndex.ToString();
 
+                // check where the problem is
+                MessageBox.Show(hourTime + " " + minuteTime);
+            }
+            catch 
+            {
+                
+            }
         }
 
         
