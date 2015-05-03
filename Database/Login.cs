@@ -74,7 +74,7 @@ namespace Database
 
         private void BT_LoginLogin_Click(object sender, EventArgs e)
         {
-            int a = 0;
+            var a = 0;
             #region "Timer arguments"
             this.timer1.Start();
             toolStripStatusLabel1.Visible = true;
@@ -112,20 +112,20 @@ namespace Database
                      */
                     try
                     {
-                        string empty = "";
+                        const string empty = "";
                         ////int emptyInt = int.Parse(empty);
                         //int? emptyInt = null; // using nullable int
                         //int empInt = 0;
-                        string tableau = TB_LoginUsername.Text + "_SESSIONS";
-                        string usernametostring = TB_LoginUsername.Text.ToString();
-                        string startPath = System.IO.Directory.GetCurrentDirectory();
+                        var tableau = TB_LoginUsername.Text + "_SESSIONS";
+                        var usernametostring = TB_LoginUsername.Text.ToString();
+                        var startPath = System.IO.Directory.GetCurrentDirectory();
                         OleDbConnection myCon =
                             new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + startPath + "\\" +
                                                 TB_LoginUsername.Text.ToLower() + "_LOG.accdb;");
                         OleDbCommand cmd = new OleDbCommand();
                         
                         cmd.CommandType = CommandType.Text;
-                        string query = "INSERT INTO " + tableau + " ([UserName], [ID], [Cycling], [Running], [Swimming]) VALUES(@username, @id, @cycling, @running, @swimming)";
+                        var query = "INSERT INTO " + tableau + " ([UserName], [ID], [Cycling], [Running], [Swimming]) VALUES(@username, @id, @cycling, @running, @swimming)";
                         cmd.CommandText = query;
                         cmd.Parameters.AddWithValue("@username", usernametostring);
                         cmd.Parameters.AddWithValue("@id", a);
@@ -170,16 +170,15 @@ namespace Database
                 #endregion
 
                 usernameFromLogin = TB_LoginUsername.Text;
-                string constring =
-                    @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=A:\Users\Atul Anand Sinha\Documents\Visual Studio 2013\Projects\Database\Database.accdb;Persist Security Info=False";
+                const string constring = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=A:\Users\Atul Anand Sinha\Documents\Visual Studio 2013\Projects\Database\Database.accdb;Persist Security Info=False";
                 OleDbConnection connection = new OleDbConnection(constring);
                 OleDbCommand command = new OleDbCommand("SELECT * FROM TPersons WHERE UserName='" + this.TB_LoginUsername.Text + "' AND PassWord='" + this.TB_LoginPassword.Text + "';", connection);
                 OleDbDataReader reader;
                 {
                     connection.Open();
                     reader = command.ExecuteReader();
-                    int count = 0;
-                    while (reader.Read())
+                    var count = 0;
+                    while (reader != null && reader.Read())
                     {
                         count = count + 1;
                     }
@@ -231,14 +230,16 @@ namespace Database
             }
             catch (OleDbException exception)
             {
-                string errorMessages = "";
-                for (int i = 0; i < exception.Errors.Count; i++)
+                var errorMessages = "";
+                for (var i = 0; i < exception.Errors.Count; i++)
                 {
-                    errorMessages += "Index #" + i + "\n" +
-                          "Message: " + exception.Errors[i].Message + "\n" +
-                          "NativeError: " + exception.Errors[i].NativeError + "\n" +
-                          "Source: " + exception.Errors[i].Source + "\n" +
-                          "SQLState: " + exception.Errors[i].SQLState + "\n";
+                    var oleDbError = exception.Errors[i];
+                    if (oleDbError != null)
+                        errorMessages += "Index #" + i + "\n" +
+                                         "Message: " + oleDbError.Message + "\n" +
+                                         "NativeError: " + oleDbError.NativeError + "\n" +
+                                         "Source: " + oleDbError.Source + "\n" +
+                                         "SQLState: " + oleDbError.SQLState + "\n";
                 }
 
                 MessageBox.Show(errorMessages);
@@ -250,7 +251,7 @@ namespace Database
 
         }
 
-        protected void timer1_Tick(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
 
             toolStripProgressBar1.Value += 25;
@@ -318,23 +319,19 @@ namespace Database
 
         private void TB_LoginPassword_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                BT_LoginLogin.PerformClick();
-                // time to stop the handling errors
-                e.SuppressKeyPress = true;
-                e.Handled = true;
-            }
+            if (e.KeyCode != Keys.Enter) return;
+            BT_LoginLogin.PerformClick();
+            // time to stop the handling errors
+            e.SuppressKeyPress = true;
+            e.Handled = true;
         }
 
         private void TB_LoginUsername_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                BT_LoginLogin.PerformClick();
-                e.SuppressKeyPress = true;
-                e.Handled = true;
-            }
+            if (e.KeyCode != Keys.Enter) return;
+            BT_LoginLogin.PerformClick();
+            e.SuppressKeyPress = true;
+            e.Handled = true;
         }
 
         private void BT_LoginLogin_KeyDown(object sender, KeyEventArgs e)
