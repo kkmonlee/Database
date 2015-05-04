@@ -57,19 +57,18 @@
             this.SessiondateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.BT_runningView = new System.Windows.Forms.Button();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabCycling = new System.Windows.Forms.TabPage();
             this.tabRunning = new System.Windows.Forms.TabPage();
-            this.tabSwimming = new System.Windows.Forms.TabPage();
-            this.Session1 = new System.Windows.Forms.Label();
-            this.Session2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.Session3 = new System.Windows.Forms.Label();
-            this.calSession1 = new System.Windows.Forms.Label();
-            this.calSession2 = new System.Windows.Forms.Label();
-            this.calSession3 = new System.Windows.Forms.Label();
             this.LB_TotalCalories = new System.Windows.Forms.Label();
+            this.calSession3 = new System.Windows.Forms.Label();
+            this.calSession2 = new System.Windows.Forms.Label();
+            this.calSession1 = new System.Windows.Forms.Label();
+            this.Session3 = new System.Windows.Forms.Label();
+            this.Session2 = new System.Windows.Forms.Label();
+            this.Session1 = new System.Windows.Forms.Label();
+            this.BT_runningView = new System.Windows.Forms.Button();
+            this.tabSwimming = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -105,7 +104,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(327, 198);
+            this.tabPage1.Size = new System.Drawing.Size(702, 372);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Settings";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -216,7 +215,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(327, 198);
+            this.tabPage2.Size = new System.Drawing.Size(702, 372);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Log";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -458,16 +457,6 @@
             this.tabPage3.Text = "Compare";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // BT_runningView
-            // 
-            this.BT_runningView.Location = new System.Drawing.Point(609, 317);
-            this.BT_runningView.Name = "BT_runningView";
-            this.BT_runningView.Size = new System.Drawing.Size(75, 23);
-            this.BT_runningView.TabIndex = 1;
-            this.BT_runningView.Text = "View";
-            this.BT_runningView.UseVisualStyleBackColor = true;
-            this.BT_runningView.Click += new System.EventHandler(this.button1_Click);
-            // 
             // tabControl2
             // 
             this.tabControl2.Controls.Add(this.tabCycling);
@@ -485,7 +474,7 @@
             this.tabCycling.Location = new System.Drawing.Point(4, 22);
             this.tabCycling.Name = "tabCycling";
             this.tabCycling.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCycling.Size = new System.Drawing.Size(521, 161);
+            this.tabCycling.Size = new System.Drawing.Size(694, 346);
             this.tabCycling.TabIndex = 0;
             this.tabCycling.Text = "Cycling";
             this.tabCycling.UseVisualStyleBackColor = true;
@@ -497,7 +486,6 @@
             this.tabRunning.Controls.Add(this.calSession2);
             this.tabRunning.Controls.Add(this.calSession1);
             this.tabRunning.Controls.Add(this.Session3);
-            this.tabRunning.Controls.Add(this.textBox1);
             this.tabRunning.Controls.Add(this.Session2);
             this.tabRunning.Controls.Add(this.Session1);
             this.tabRunning.Controls.Add(this.BT_runningView);
@@ -509,69 +497,15 @@
             this.tabRunning.Text = "Running";
             this.tabRunning.UseVisualStyleBackColor = true;
             // 
-            // tabSwimming
+            // LB_TotalCalories
             // 
-            this.tabSwimming.Location = new System.Drawing.Point(4, 22);
-            this.tabSwimming.Name = "tabSwimming";
-            this.tabSwimming.Size = new System.Drawing.Size(521, 177);
-            this.tabSwimming.TabIndex = 2;
-            this.tabSwimming.Text = "Swimming";
-            this.tabSwimming.UseVisualStyleBackColor = true;
-            // 
-            // Session1
-            // 
-            this.Session1.AutoSize = true;
-            this.Session1.Location = new System.Drawing.Point(7, 7);
-            this.Session1.Name = "Session1";
-            this.Session1.Size = new System.Drawing.Size(50, 13);
-            this.Session1.TabIndex = 2;
-            this.Session1.Text = "Session1";
-            // 
-            // Session2
-            // 
-            this.Session2.AutoSize = true;
-            this.Session2.Location = new System.Drawing.Point(236, 7);
-            this.Session2.Name = "Session2";
-            this.Session2.Size = new System.Drawing.Size(50, 13);
-            this.Session2.TabIndex = 3;
-            this.Session2.Text = "Session2";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(457, 212);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(195, 44);
-            this.textBox1.TabIndex = 4;
-            // 
-            // Session3
-            // 
-            this.Session3.AutoSize = true;
-            this.Session3.Location = new System.Drawing.Point(478, 7);
-            this.Session3.Name = "Session3";
-            this.Session3.Size = new System.Drawing.Size(50, 13);
-            this.Session3.TabIndex = 5;
-            this.Session3.Text = "Session3";
-            // 
-            // calSession1
-            // 
-            this.calSession1.AutoSize = true;
-            this.calSession1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.calSession1.Location = new System.Drawing.Point(9, 125);
-            this.calSession1.Name = "calSession1";
-            this.calSession1.Size = new System.Drawing.Size(48, 13);
-            this.calSession1.TabIndex = 6;
-            this.calSession1.Text = "label10";
-            // 
-            // calSession2
-            // 
-            this.calSession2.AutoSize = true;
-            this.calSession2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.calSession2.Location = new System.Drawing.Point(238, 125);
-            this.calSession2.Name = "calSession2";
-            this.calSession2.Size = new System.Drawing.Size(48, 13);
-            this.calSession2.TabIndex = 7;
-            this.calSession2.Text = "label10";
+            this.LB_TotalCalories.AutoSize = true;
+            this.LB_TotalCalories.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LB_TotalCalories.Location = new System.Drawing.Point(7, 327);
+            this.LB_TotalCalories.Name = "LB_TotalCalories";
+            this.LB_TotalCalories.Size = new System.Drawing.Size(48, 13);
+            this.LB_TotalCalories.TabIndex = 9;
+            this.LB_TotalCalories.Text = "label10";
             // 
             // calSession3
             // 
@@ -583,15 +517,71 @@
             this.calSession3.TabIndex = 8;
             this.calSession3.Text = "label10";
             // 
-            // LB_TotalCalories
+            // calSession2
             // 
-            this.LB_TotalCalories.AutoSize = true;
-            this.LB_TotalCalories.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_TotalCalories.Location = new System.Drawing.Point(7, 327);
-            this.LB_TotalCalories.Name = "LB_TotalCalories";
-            this.LB_TotalCalories.Size = new System.Drawing.Size(48, 13);
-            this.LB_TotalCalories.TabIndex = 9;
-            this.LB_TotalCalories.Text = "label10";
+            this.calSession2.AutoSize = true;
+            this.calSession2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.calSession2.Location = new System.Drawing.Point(238, 125);
+            this.calSession2.Name = "calSession2";
+            this.calSession2.Size = new System.Drawing.Size(48, 13);
+            this.calSession2.TabIndex = 7;
+            this.calSession2.Text = "label10";
+            // 
+            // calSession1
+            // 
+            this.calSession1.AutoSize = true;
+            this.calSession1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.calSession1.Location = new System.Drawing.Point(9, 125);
+            this.calSession1.Name = "calSession1";
+            this.calSession1.Size = new System.Drawing.Size(48, 13);
+            this.calSession1.TabIndex = 6;
+            this.calSession1.Text = "label10";
+            // 
+            // Session3
+            // 
+            this.Session3.AutoSize = true;
+            this.Session3.Location = new System.Drawing.Point(478, 7);
+            this.Session3.Name = "Session3";
+            this.Session3.Size = new System.Drawing.Size(50, 13);
+            this.Session3.TabIndex = 5;
+            this.Session3.Text = "Session3";
+            // 
+            // Session2
+            // 
+            this.Session2.AutoSize = true;
+            this.Session2.Location = new System.Drawing.Point(236, 7);
+            this.Session2.Name = "Session2";
+            this.Session2.Size = new System.Drawing.Size(50, 13);
+            this.Session2.TabIndex = 3;
+            this.Session2.Text = "Session2";
+            // 
+            // Session1
+            // 
+            this.Session1.AutoSize = true;
+            this.Session1.Location = new System.Drawing.Point(7, 7);
+            this.Session1.Name = "Session1";
+            this.Session1.Size = new System.Drawing.Size(50, 13);
+            this.Session1.TabIndex = 2;
+            this.Session1.Text = "Session1";
+            // 
+            // BT_runningView
+            // 
+            this.BT_runningView.Location = new System.Drawing.Point(609, 317);
+            this.BT_runningView.Name = "BT_runningView";
+            this.BT_runningView.Size = new System.Drawing.Size(75, 23);
+            this.BT_runningView.TabIndex = 1;
+            this.BT_runningView.Text = "View";
+            this.BT_runningView.UseVisualStyleBackColor = true;
+            this.BT_runningView.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // tabSwimming
+            // 
+            this.tabSwimming.Location = new System.Drawing.Point(4, 22);
+            this.tabSwimming.Name = "tabSwimming";
+            this.tabSwimming.Size = new System.Drawing.Size(694, 346);
+            this.tabSwimming.TabIndex = 2;
+            this.tabSwimming.Text = "Swimming";
+            this.tabSwimming.UseVisualStyleBackColor = true;
             // 
             // ClientMain
             // 
@@ -654,7 +644,6 @@
         private System.Windows.Forms.TabPage tabSwimming;
         private System.Windows.Forms.Label Session1;
         private System.Windows.Forms.Label Session2;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label Session3;
         private System.Windows.Forms.Label calSession1;
         private System.Windows.Forms.Label calSession3;

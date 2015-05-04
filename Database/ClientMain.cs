@@ -116,7 +116,8 @@ namespace Database
             calSession1.Visible = false;
             calSession2.Visible = false;
             calSession3.Visible = false;
-            
+            LB_TotalCalories.Visible = false;
+
             //try
             //{
             //    string tableName = usernamestringo + "_SESSIONS";
@@ -362,6 +363,7 @@ namespace Database
                     typeSplit = string.Concat(SplitIt1[3]);
                     Session1.Visible = true;
                     calSession1.Visible = true;
+                    LB_TotalCalories.Visible = true;
                     Session1.Text = "Date: " + dateSplit + "\n " +
                                    "Time: " + timeSplit + "\n " +
                                    "Duration: " + duraSplit + "\n " +
@@ -439,6 +441,7 @@ namespace Database
                     typeSplit = string.Concat(SplitIt2[3]);
                     Session2.Visible = true;
                     calSession2.Visible = true;
+                    LB_TotalCalories.Visible = true;
                     Session2.Text = "Date: " + dateSplit + "\n " +
                                     "Time: " + timeSplit + "\n " +
                                     "Duration: " + duraSplit + "\n " +
@@ -510,6 +513,7 @@ namespace Database
                     typeSplit = string.Concat(SplitIt3[3]);
                     Session3.Visible = true;
                     calSession3.Visible = true;
+                    LB_TotalCalories.Visible = true;
                     Session3.Text = "Date: " + dateSplit + "\n " +
                                     "Time: " + timeSplit + "\n " +
                                     "Duration: " + duraSplit + "\n " +
