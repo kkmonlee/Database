@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
+using System.Data.SqlTypes;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
@@ -225,7 +227,7 @@ namespace Database
 
                 string exerciseTypeQuery = "[" + exerciseType + "]";
                 string totalTime = hourTime + ":" + minuteTime;
-                string insertQuery = date + " | " + totalTime + " | " + duration + " | " + exerciseStyle;
+                string insertQuery = " || " + date + " | " + totalTime + " | " + duration + " | " + exerciseStyle;
                 // string query = "UPDATE " + tableName + " SET " + exerciseTypeQuery + "=@exerciseQueries" + " WHERE UserName=@username";
                 // MessageBox.Show(query + "\n" + insertQuery + "\n" + exerciseTypeQuery + "\n" + totalTime + "\n" + usernamestringo + "\n ^ name");
 
@@ -295,6 +297,24 @@ namespace Database
                 #endregion
         }
 
+        //public List<string> ParseWords(string s)
+        //{
+        //    List<string> words = new List<string>();
+
+        //    int pos = 0;
+        //    while (pos < s.Length)
+        //    {
+        //        //word start
+        //        int start = pos;
+
+        //        //word  end
+        //        pos.s.IndexOf('|', pos);
+
+        //    }
+        //    return words;
+        //} 
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             string cntPath = System.IO.Directory.GetCurrentDirectory();
@@ -320,8 +340,64 @@ namespace Database
                 }
                 
                 // convert List<string> to single string
+                
                 var show = String.Join(null, rawList.ToArray());
-                MessageBox.Show(show);
+                label10.Text = show;
+
+                char pipe = Convert.ToChar("|");
+                List<Result> ResultList = new List<Result>();
+                string[] splits = null;
+                
+
+                foreach (DataRow row in dsSet.Tables[0].Rows)
+                {
+                    var result = new Result();
+
+                    splits = String.Format("{0}", row["Running"]).Split(pipe);
+
+                    result.aDate = String.Format("{0}", splits[2]);
+                    result.Time = String.Format("{0}", splits[3]);
+                    result.Marker = String.Format("{0}", splits[4]);
+                    result.style = String.Format("{0}", splits[5]);
+                    ResultList.Add(result);
+
+                }
+
+                foreach (Result aresult in ResultList)
+                {
+                    var dateSplit = String.Format("{0}", aresult.aDate);
+                    var timeSplit = aresult.Time;
+                    var duraSplit = String.Format("{0}", aresult.Marker);
+                    var typeSplit = aresult.style;
+                    label11.Text = "Date: " + dateSplit + "\n " +
+                                   "Time: " + timeSplit + "\n " +
+                                   "Duration: " + duraSplit + "\n " +
+                                   "Type: " + typeSplit + "\n \n ";
+
+                }
+                
+
+
+
+                //string parsed = ""; // where parsed  string will be stored
+
+                //bool flag = false;
+                //foreach (var x in show.Split('|'))
+                //{
+                //    bool endsWithVBAR = x.EndsWith(@"\");
+                //    parsed += flag ? "|" + x + " " : endsWithVBAR ? x.Substring(0, x.Length - 1) : x + " ";
+                //    flag = endsWithVBAR;
+                //    textBox1.Text = parsed;
+                //}
+
+                //string[] events = Regex.Split(show, "\\|");
+
+                //foreach (string line in events)
+                //{
+                //    textBox1.Text = line;
+                //}
+
+
                 /*
                 String.Join(String.Empty, rawList.ToArray());
                 StringBuilder builder = new StringBuilder();

@@ -321,6 +321,11 @@ namespace Database
         {
             if (e.KeyCode != Keys.Enter) return;
             BT_LoginLogin.PerformClick();
+            #region "Timer arguments"
+            this.timer1.Start();
+            toolStripStatusLabel1.Visible = true;
+            toolStripStatusLabel1.Text = "Loading";
+            #endregion
             // time to stop the handling errors
             e.SuppressKeyPress = true;
             e.Handled = true;

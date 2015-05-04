@@ -57,16 +57,20 @@
             this.SessiondateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BT_runningView = new System.Windows.Forms.Button();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabCycling = new System.Windows.Forms.TabPage();
             this.tabRunning = new System.Windows.Forms.TabPage();
             this.tabSwimming = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl2.SuspendLayout();
+            this.tabRunning.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -442,7 +446,6 @@
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.tabControl2);
-            this.tabPage3.Controls.Add(this.button1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(529, 372);
@@ -450,26 +453,26 @@
             this.tabPage3.Text = "Compare";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // BT_runningView
             // 
-            this.button1.Location = new System.Drawing.Point(446, 341);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.BT_runningView.Location = new System.Drawing.Point(440, 317);
+            this.BT_runningView.Name = "BT_runningView";
+            this.BT_runningView.Size = new System.Drawing.Size(75, 23);
+            this.BT_runningView.TabIndex = 1;
+            this.BT_runningView.Text = "View";
+            this.BT_runningView.UseVisualStyleBackColor = true;
+            this.BT_runningView.Click += new System.EventHandler(this.button1_Click);
             // 
             // tabControl2
             // 
             this.tabControl2.Controls.Add(this.tabCycling);
             this.tabControl2.Controls.Add(this.tabRunning);
             this.tabControl2.Controls.Add(this.tabSwimming);
-            this.tabControl2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl2.Location = new System.Drawing.Point(0, 0);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(529, 187);
+            this.tabControl2.Size = new System.Drawing.Size(529, 372);
             this.tabControl2.TabIndex = 2;
             // 
             // tabCycling
@@ -484,10 +487,14 @@
             // 
             // tabRunning
             // 
+            this.tabRunning.Controls.Add(this.textBox1);
+            this.tabRunning.Controls.Add(this.label11);
+            this.tabRunning.Controls.Add(this.label10);
+            this.tabRunning.Controls.Add(this.BT_runningView);
             this.tabRunning.Location = new System.Drawing.Point(4, 22);
             this.tabRunning.Name = "tabRunning";
             this.tabRunning.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRunning.Size = new System.Drawing.Size(521, 177);
+            this.tabRunning.Size = new System.Drawing.Size(521, 346);
             this.tabRunning.TabIndex = 1;
             this.tabRunning.Text = "Running";
             this.tabRunning.UseVisualStyleBackColor = true;
@@ -500,6 +507,32 @@
             this.tabSwimming.TabIndex = 2;
             this.tabSwimming.Text = "Swimming";
             this.tabSwimming.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(7, 7);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(41, 13);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "label10";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(17, 118);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(41, 13);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "label11";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(20, 43);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(195, 44);
+            this.textBox1.TabIndex = 4;
             // 
             // ClientMain
             // 
@@ -518,6 +551,8 @@
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
+            this.tabRunning.ResumeLayout(false);
+            this.tabRunning.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -553,11 +588,14 @@
         private System.Windows.Forms.ComboBox exerciseStyleComboBox;
         private System.Windows.Forms.Button BT_Reset;
         private System.Windows.Forms.Button BT_Log;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BT_runningView;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabCycling;
         private System.Windows.Forms.TabPage tabRunning;
         private System.Windows.Forms.TabPage tabSwimming;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBox1;
 
     }
 }
