@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using ZedGraph;
 
 namespace Database
 {
@@ -109,6 +110,12 @@ namespace Database
             ////can't close parent form from child, will try to make it invisible
             //loginForm.Visible = false;
             exerciseStyleComboBox.Enabled = false;
+            Session1.Visible = false;
+            Session2.Visible = false;
+            Session3.Visible = false;
+            calSession1.Visible = false;
+            calSession2.Visible = false;
+            calSession3.Visible = false;
             
             //try
             //{
@@ -123,7 +130,7 @@ namespace Database
             //}
             //catch
             //{
-                
+
             //}
         }
 
@@ -329,14 +336,17 @@ namespace Database
                 // convert List<string> to single string
                 
                 var show = String.Join(null, rawList.ToArray());
-                label10.Text = show;
+                //label10.Text = show;
 
-                var showSplit = Regex.Split(show, " \\| ");
+                //var showSplit = Regex.Split(show, " \\| ");
+                // replaced by SplitIt
                 var doubleVBarSplit = Regex.Split(show, " \\|\\| "); // splits separate sessions
                 string dateSplit;
                 string timeSplit;
                 int duraSplit;
                 string typeSplit;
+                int calories;
+                int totalCalories = 0;
                 /*
                  * Do bottom
                  */
@@ -350,11 +360,59 @@ namespace Database
                     timeSplit = string.Concat(SplitIt1[1]);
                     duraSplit = int.Parse(SplitIt1[2]);
                     typeSplit = string.Concat(SplitIt1[3]);
-                    label11.Text = "Date: " + dateSplit + "\n " +
+                    Session1.Visible = true;
+                    calSession1.Visible = true;
+                    Session1.Text = "Date: " + dateSplit + "\n " +
                                    "Time: " + timeSplit + "\n " +
                                    "Duration: " + duraSplit + "\n " +
                                    "Type: " + typeSplit + "\n \n ";
-
+                    if (typeSplit == "5 mph")
+                    {
+                        calories = 472*duraSplit;
+                        calSession1.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        LB_TotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "6 mph")
+                    {
+                        calories = 590*duraSplit;
+                        calSession1.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        LB_TotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "7 mph")
+                    {
+                        calories = 679*duraSplit;
+                        calSession1.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        LB_TotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "8 mph")
+                    {
+                        calories = 797*duraSplit;
+                        calSession1.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        LB_TotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "9 mph")
+                    {
+                        calories = 885 * duraSplit;
+                        calSession1.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        LB_TotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "10 mph")
+                    {
+                        calories = 944*duraSplit;
+                        calSession1.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        LB_TotalCalories.Text = totalCalories.ToString();
+                    }
+                    else
+                    {
+                        Exception ex = null;
+                        MessageBox.Show(ex.ToString());
+                    }
                 }
                 else
                 {
@@ -379,10 +437,59 @@ namespace Database
                     timeSplit = string.Concat(SplitIt2[1]);
                     duraSplit = int.Parse(SplitIt2[2]);
                     typeSplit = string.Concat(SplitIt2[3]);
-                    label11.Text += "Date: " + dateSplit + "\n " +
+                    Session2.Visible = true;
+                    calSession2.Visible = true;
+                    Session2.Text = "Date: " + dateSplit + "\n " +
                                     "Time: " + timeSplit + "\n " +
                                     "Duration: " + duraSplit + "\n " +
                                     "Type: " + typeSplit + "\n \n ";
+                    if (typeSplit == "5 mph")
+                    {
+                        calories = 472 * duraSplit;
+                        calSession2.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        LB_TotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "6 mph")
+                    {
+                        calories = 590 * duraSplit;
+                        calSession2.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        LB_TotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "7 mph")
+                    {
+                        calories = 679 * duraSplit;
+                        calSession2.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        LB_TotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "8 mph")
+                    {
+                        calories = 797 * duraSplit;
+                        calSession2.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        LB_TotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "9 mph")
+                    {
+                        calories = 885 * duraSplit;
+                        calSession2.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        LB_TotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "10 mph")
+                    {
+                        calories = 944 * duraSplit;
+                        calSession2.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        LB_TotalCalories.Text = totalCalories.ToString();
+                    }
+                    else
+                    {
+                        Exception ex = null;
+                        MessageBox.Show(ex.ToString());
+                    }
                 }
                 else
                 {
@@ -401,10 +508,59 @@ namespace Database
                     timeSplit = string.Concat(SplitIt3[1]);
                     duraSplit = int.Parse(SplitIt3[2]);
                     typeSplit = string.Concat(SplitIt3[3]);
-                    label11.Text += "Date: " + dateSplit + "\n " +
+                    Session3.Visible = true;
+                    calSession3.Visible = true;
+                    Session3.Text = "Date: " + dateSplit + "\n " +
                                     "Time: " + timeSplit + "\n " +
                                     "Duration: " + duraSplit + "\n " +
                                     "Type: " + typeSplit + "\n \n ";
+                    if (typeSplit == "5 mph")
+                    {
+                        calories = 472 * duraSplit;
+                        calSession3.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        LB_TotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "6 mph")
+                    {
+                        calories = 590 * duraSplit;
+                        calSession3.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        LB_TotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "7 mph")
+                    {
+                        calories = 679 * duraSplit;
+                        calSession3.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        LB_TotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "8 mph")
+                    {
+                        calories = 797 * duraSplit;
+                        calSession3.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        LB_TotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "9 mph")
+                    {
+                        calories = 885 * duraSplit;
+                        calSession3.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        LB_TotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "10 mph")
+                    {
+                        calories = 944 * duraSplit;
+                        calSession3.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        LB_TotalCalories.Text = totalCalories.ToString();
+                    }
+                    else
+                    {
+                        Exception ex = null;
+                        MessageBox.Show(ex.ToString());
+                    }
                 }
                 else
                 {
@@ -413,14 +569,15 @@ namespace Database
                         
                     }
                 }
-                
+                LB_TotalCalories.Text += @" calories burnt in total";
+
 
                 /*
                  *  Do bottom
                  */
-                
+
                 // can only view 3 sessions per sport per person as they will be resting afterwards
-                
+
 
 
 
