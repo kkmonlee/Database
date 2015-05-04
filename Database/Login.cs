@@ -205,13 +205,6 @@ namespace Database
                             clientForm.ShowDialog();
                             connection.Dispose();
                         }
-                        else
-                        {
-                            MessageBox.Show("You should've clicked OK. :(");
-
-                        }
-                       
-                        
                     }
                     else if (count > 1)
                     {

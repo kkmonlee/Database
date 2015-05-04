@@ -995,8 +995,8 @@ namespace Database
                     }
                     else
                     {
-                        Exception ex = null;
-                        MessageBox.Show(ex.ToString());
+                        //Exception ex = null;
+                        //MessageBox.Show(ex.ToString());
                     }
                 }
                 else
@@ -1063,8 +1063,8 @@ namespace Database
                     }
                     else
                     {
-                        Exception ex = null;
-                        MessageBox.Show(ex.ToString());
+                        //Exception ex = null;
+                        //MessageBox.Show(ex.ToString());
                     }
                 }
                 else
@@ -1130,8 +1130,8 @@ namespace Database
                     }
                     else
                     {
-                        Exception ex = null;
-                        MessageBox.Show(ex.ToString());
+                        //Exception ex = null;
+                        //MessageBox.Show(ex.ToString());
                     }
                 }
                 else
