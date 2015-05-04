@@ -110,13 +110,25 @@ namespace Database
             ////can't close parent form from child, will try to make it invisible
             //loginForm.Visible = false;
             exerciseStyleComboBox.Enabled = false;
-            Session1.Visible = false;
-            Session2.Visible = false;
-            Session3.Visible = false;
-            calSession1.Visible = false;
-            calSession2.Visible = false;
-            calSession3.Visible = false;
-            LB_TotalCalories.Visible = false;
+            // Running labels
+            RunningSession1.Visible = false;
+            RunningSession2.Visible = false;
+            RunningSession3.Visible = false;
+            RunningCalories1.Visible = false;
+            RunningCalories2.Visible = false;
+            RunningCalories3.Visible = false;
+            RunningTotalCalories.Visible = false;
+
+            // Cycling labels
+            CyclingSession1.Visible = false;
+            CyclingSession2.Visible = false;
+            CyclingSession3.Visible = false;
+            CyclingCalories1.Visible = false;
+            CyclingCalories2.Visible = false;
+            CyclingCalories3.Visible = false;
+            CyclingTotalCalories.Visible = false;
+
+
 
             //try
             //{
@@ -361,54 +373,54 @@ namespace Database
                     timeSplit = string.Concat(SplitIt1[1]);
                     duraSplit = int.Parse(SplitIt1[2]);
                     typeSplit = string.Concat(SplitIt1[3]);
-                    Session1.Visible = true;
-                    calSession1.Visible = true;
-                    LB_TotalCalories.Visible = true;
-                    Session1.Text = "Date: " + dateSplit + "\n " +
+                    RunningSession1.Visible = true;
+                    RunningCalories1.Visible = true;
+                    RunningTotalCalories.Visible = true;
+                    RunningSession1.Text = "Date: " + dateSplit + "\n " +
                                    "Time: " + timeSplit + "\n " +
                                    "Duration: " + duraSplit + "\n " +
                                    "Type: " + typeSplit + "\n \n ";
                     if (typeSplit == "5 mph")
                     {
                         calories = 472*duraSplit;
-                        calSession1.Text = @"You burnt " + calories + @" calories";
+                        RunningCalories1.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
-                        LB_TotalCalories.Text = totalCalories.ToString();
+                        RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "6 mph")
                     {
                         calories = 590*duraSplit;
-                        calSession1.Text = @"You burnt " + calories + @" calories";
+                        RunningCalories1.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
-                        LB_TotalCalories.Text = totalCalories.ToString();
+                        RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "7 mph")
                     {
                         calories = 679*duraSplit;
-                        calSession1.Text = @"You burnt " + calories + @" calories";
+                        RunningCalories1.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
-                        LB_TotalCalories.Text = totalCalories.ToString();
+                        RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "8 mph")
                     {
                         calories = 797*duraSplit;
-                        calSession1.Text = @"You burnt " + calories + @" calories";
+                        RunningCalories1.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
-                        LB_TotalCalories.Text = totalCalories.ToString();
+                        RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "9 mph")
                     {
                         calories = 885 * duraSplit;
-                        calSession1.Text = @"You burnt " + calories + @" calories";
+                        RunningCalories1.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
-                        LB_TotalCalories.Text = totalCalories.ToString();
+                        RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "10 mph")
                     {
                         calories = 944*duraSplit;
-                        calSession1.Text = @"You burnt " + calories + @" calories";
+                        RunningCalories1.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
-                        LB_TotalCalories.Text = totalCalories.ToString();
+                        RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else
                     {
@@ -418,6 +430,7 @@ namespace Database
                 }
                 else
                 {
+                    label11.Text = "There are no logs! \n Try again.";
                     foreach (var source in doubleVBarSplit.Skip(1))
                     {
                         
@@ -439,54 +452,54 @@ namespace Database
                     timeSplit = string.Concat(SplitIt2[1]);
                     duraSplit = int.Parse(SplitIt2[2]);
                     typeSplit = string.Concat(SplitIt2[3]);
-                    Session2.Visible = true;
-                    calSession2.Visible = true;
-                    LB_TotalCalories.Visible = true;
-                    Session2.Text = "Date: " + dateSplit + "\n " +
+                    RunningSession2.Visible = true;
+                    RunningCalories2.Visible = true;
+                    RunningTotalCalories.Visible = true;
+                    RunningSession2.Text = "Date: " + dateSplit + "\n " +
                                     "Time: " + timeSplit + "\n " +
                                     "Duration: " + duraSplit + "\n " +
                                     "Type: " + typeSplit + "\n \n ";
                     if (typeSplit == "5 mph")
                     {
                         calories = 472 * duraSplit;
-                        calSession2.Text = @"You burnt " + calories + @" calories";
+                        RunningCalories2.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
-                        LB_TotalCalories.Text = totalCalories.ToString();
+                        RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "6 mph")
                     {
                         calories = 590 * duraSplit;
-                        calSession2.Text = @"You burnt " + calories + @" calories";
+                        RunningCalories2.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
-                        LB_TotalCalories.Text = totalCalories.ToString();
+                        RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "7 mph")
                     {
                         calories = 679 * duraSplit;
-                        calSession2.Text = @"You burnt " + calories + @" calories";
+                        RunningCalories2.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
-                        LB_TotalCalories.Text = totalCalories.ToString();
+                        RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "8 mph")
                     {
                         calories = 797 * duraSplit;
-                        calSession2.Text = @"You burnt " + calories + @" calories";
+                        RunningCalories2.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
-                        LB_TotalCalories.Text = totalCalories.ToString();
+                        RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "9 mph")
                     {
                         calories = 885 * duraSplit;
-                        calSession2.Text = @"You burnt " + calories + @" calories";
+                        RunningCalories2.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
-                        LB_TotalCalories.Text = totalCalories.ToString();
+                        RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "10 mph")
                     {
                         calories = 944 * duraSplit;
-                        calSession2.Text = @"You burnt " + calories + @" calories";
+                        RunningCalories2.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
-                        LB_TotalCalories.Text = totalCalories.ToString();
+                        RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else
                     {
@@ -511,54 +524,54 @@ namespace Database
                     timeSplit = string.Concat(SplitIt3[1]);
                     duraSplit = int.Parse(SplitIt3[2]);
                     typeSplit = string.Concat(SplitIt3[3]);
-                    Session3.Visible = true;
-                    calSession3.Visible = true;
-                    LB_TotalCalories.Visible = true;
-                    Session3.Text = "Date: " + dateSplit + "\n " +
+                    RunningSession3.Visible = true;
+                    RunningCalories3.Visible = true;
+                    RunningTotalCalories.Visible = true;
+                    RunningSession3.Text = "Date: " + dateSplit + "\n " +
                                     "Time: " + timeSplit + "\n " +
                                     "Duration: " + duraSplit + "\n " +
                                     "Type: " + typeSplit + "\n \n ";
                     if (typeSplit == "5 mph")
                     {
                         calories = 472 * duraSplit;
-                        calSession3.Text = @"You burnt " + calories + @" calories";
+                        RunningCalories3.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
-                        LB_TotalCalories.Text = totalCalories.ToString();
+                        RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "6 mph")
                     {
                         calories = 590 * duraSplit;
-                        calSession3.Text = @"You burnt " + calories + @" calories";
+                        RunningCalories3.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
-                        LB_TotalCalories.Text = totalCalories.ToString();
+                        RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "7 mph")
                     {
                         calories = 679 * duraSplit;
-                        calSession3.Text = @"You burnt " + calories + @" calories";
+                        RunningCalories3.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
-                        LB_TotalCalories.Text = totalCalories.ToString();
+                        RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "8 mph")
                     {
                         calories = 797 * duraSplit;
-                        calSession3.Text = @"You burnt " + calories + @" calories";
+                        RunningCalories3.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
-                        LB_TotalCalories.Text = totalCalories.ToString();
+                        RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "9 mph")
                     {
                         calories = 885 * duraSplit;
-                        calSession3.Text = @"You burnt " + calories + @" calories";
+                        RunningCalories3.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
-                        LB_TotalCalories.Text = totalCalories.ToString();
+                        RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "10 mph")
                     {
                         calories = 944 * duraSplit;
-                        calSession3.Text = @"You burnt " + calories + @" calories";
+                        RunningCalories3.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
-                        LB_TotalCalories.Text = totalCalories.ToString();
+                        RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else
                     {
@@ -573,7 +586,7 @@ namespace Database
                         
                     }
                 }
-                LB_TotalCalories.Text += @" calories burnt in total";
+                RunningTotalCalories.Text += @" calories burnt in total";
 
 
                 /*
@@ -617,6 +630,280 @@ namespace Database
             {
                 MessageBox.Show(exception.ToString());
             }
+            connection.Close();
+            connection.Dispose();
+        }
+
+        private void CyclingView_Click(object sender, EventArgs e)
+        {
+            string cntPath = Directory.GetCurrentDirectory();
+            usernamestringo = Login.UsernameFromLogin;
+            string tableName = usernamestringo + "_SESSIONS";
+
+            List<string> rawList = new List<string>();
+            connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + usernamestringo.ToLower() + "_LOG.accdb;");
+            Sql = "SELECT * FROM " + tableName;
+
+            try
+            {
+                connection.Open();
+                oledbAdapter = new OleDbDataAdapter(Sql, connection);
+                // BEFORE: oledbAdapter = new OleDbDataAdapter();
+                // WAS GETTING ERROR: SelectCommand.Connection property has not been initialized.
+                // I had to pass the connection object on the adapter.
+                DataSet dsSet = new DataSet();
+                oledbAdapter.Fill(dsSet);
+                foreach (DataRow row in dsSet.Tables[0].Rows)
+                {
+                    rawList.Add(row["Cycling"].ToString());
+
+                }
+
+                var show = String.Join(null, rawList.ToArray());
+                var doubleVBarSplit = Regex.Split(show, " \\|\\| ");
+                string dateSplit;
+                string timeSplit;
+                int duraSplit;
+                string typeSplit;
+                int calories;
+                int totalCalories = 0;
+
+                //Session 1
+                int i;
+                i = 1;
+                if (i < doubleVBarSplit.Length)
+                {
+                    var session1 = doubleVBarSplit[1];
+                    var SplitIt1 = Regex.Split(session1, " \\| ");
+                    dateSplit = DateTime.Parse(s: SplitIt1[0]).ToShortDateString();
+                    timeSplit = string.Concat(SplitIt1[1]);
+                    duraSplit = int.Parse(SplitIt1[2]);
+                    typeSplit = string.Concat(SplitIt1[3]);
+                    CyclingSession1.Visible = true;
+                    CyclingCalories1.Visible = true;
+                    CyclingTotalCalories.Visible = true;
+                    CyclingSession1.Text = "Date: " + dateSplit + "\n " +
+                                           "Time: " + timeSplit + "\n " +
+                                           "Duration: " + duraSplit + "\n " +
+                                           "Type: " + typeSplit + "\n \n ";
+                    if (typeSplit == "<10 mph, leisure cycling")
+                    {
+                        calories = 236*duraSplit;
+                        CyclingCalories1.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        CyclingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "10 - 11.9 mph, gentle")
+                    {
+                        calories = 354*duraSplit;
+                        CyclingCalories1.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        CyclingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "12 - 13.9 mph, moderate")
+                    {
+                        calories = 472*duraSplit;
+                        CyclingCalories1.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        CyclingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "14 - 15.9 mph, vigorous")
+                    {
+                        calories = 590*duraSplit;
+                        CyclingCalories1.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        CyclingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "16 - 20 mph, very fast")
+                    {
+                        calories = 708*duraSplit;
+                        CyclingCalories1.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        CyclingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == ">20 mph, racing")
+                    {
+                        calories = 944*duraSplit;
+                        CyclingCalories1.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        CyclingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    else
+                    {
+                        Exception ex = null;
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+                else
+                {
+                    label10.Text = "There are no logs! \n Try again.";
+                    foreach (var source in doubleVBarSplit.Skip(1))
+                    {
+                        
+                    }
+                }
+                CyclingTotalCalories.Text = "You have burnt " + totalCalories + " calories.";
+
+                // Session 2
+                i = 2;
+                if (i < doubleVBarSplit.Length)
+                {
+                    var session2 = doubleVBarSplit[2];
+                    var SplitIt2 = Regex.Split(session2, " \\| ");
+                    dateSplit = DateTime.Parse(SplitIt2[0]).ToShortDateString();
+                    timeSplit = string.Concat(SplitIt2[1]);
+                    duraSplit = int.Parse(SplitIt2[2]);
+                    typeSplit = string.Concat(SplitIt2[3]);
+                    CyclingSession2.Visible = true;
+                    CyclingCalories2.Visible = true;
+                    CyclingTotalCalories.Visible = true;
+                    CyclingSession2.Text = "Date: " + dateSplit + "\n " +
+                                           "Time: " + timeSplit + "\n " +
+                                           "Duration: " + duraSplit + "\n " +
+                                           "Type: " + typeSplit + "\n \n ";
+                    if (typeSplit == "<10 mph, leisure cycling")
+                    {
+                        calories = 236*duraSplit;
+                        CyclingCalories2.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        CyclingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "10 - 11.9 mph, gentle")
+                    {
+                        calories = 354*duraSplit;
+                        CyclingCalories2.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        CyclingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "12 - 13.9 mph, moderate")
+                    {
+                        calories = 472*duraSplit;
+                        CyclingCalories2.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        CyclingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "14 - 15.9 mph, vigorous")
+                    {
+                        calories = 590*duraSplit;
+                        CyclingCalories2.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        CyclingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "16 - 20 mph, very fast")
+                    {
+                        calories = 708*duraSplit;
+                        CyclingCalories2.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        CyclingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == ">20 mph, racing")
+                    {
+                        calories = 944*duraSplit;
+                        CyclingCalories2.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        CyclingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    else
+                    {
+                        Exception ex = null;
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+                else
+                {
+                    foreach (var source in doubleVBarSplit.Skip(2))
+                    {
+                        
+                    }
+                }
+                CyclingTotalCalories.Text = "You have burnt " + totalCalories + " calories.";
+
+                // Session3
+                i = 3;
+                if (i < doubleVBarSplit.Length)
+                {
+                    var session3 = doubleVBarSplit[3];
+                    var SplitIt3 = Regex.Split(session3, " \\| ");
+                    dateSplit = DateTime.Parse(SplitIt3[0]).ToShortDateString();
+                    timeSplit = string.Concat(SplitIt3[1]);
+                    duraSplit = int.Parse(SplitIt3[2]);
+                    typeSplit = string.Concat(SplitIt3[3]);
+                    CyclingSession3.Visible = true;
+                    CyclingCalories3.Visible = true;
+                    CyclingTotalCalories.Visible = true;
+                    CyclingSession3.Text = "Date: " + dateSplit + "\n " +
+                                           "Time: " + timeSplit + "\n " +
+                                           "Duration: " + duraSplit + "\n " +
+                                           "Type: " + typeSplit + "\n \n ";
+                    if (typeSplit == "<10 mph, leisure cycling")
+                    {
+                        calories = 236*duraSplit;
+                        CyclingCalories3.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        CyclingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "10 - 11.9 mph, gentle")
+                    {
+                        calories = 354*duraSplit;
+                        CyclingCalories3.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        CyclingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "12 - 13.9 mph, moderate")
+                    {
+                        calories = 472*duraSplit;
+                        CyclingCalories3.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        CyclingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "14 - 15.9 mph, vigorous")
+                    {
+                        calories = 590*duraSplit;
+                        CyclingCalories3.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        CyclingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == "16 - 20 mph, very fast")
+                    {
+                        calories = 708*duraSplit;
+                        CyclingCalories3.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        CyclingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    else if (typeSplit == ">20 mph, racing")
+                    {
+                        calories = 944*duraSplit;
+                        CyclingCalories3.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        CyclingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    else
+                    {
+                        Exception ex = null;
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+                else
+                {
+                    foreach (var source in doubleVBarSplit.Skip(3))
+                    {
+                        
+                    }
+                }
+                CyclingTotalCalories.Text = "You have burnt " + totalCalories + " calories.";
+
+            }
+            catch (OleDbException exception)
+            {
+                MessageBox.Show(exception.ToString());
+            }
+            connection.Close();
+            connection.Dispose();
+        }
+
+        private void BT_SwimmingView_Click(object sender, EventArgs e)
+        {
+
         }
 
     }
