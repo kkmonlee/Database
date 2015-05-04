@@ -1,22 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
-using System.Data.SqlTypes;
-using System.Diagnostics.Eventing.Reader;
-using System.Drawing;
-using System.Drawing.Text;
+using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-using Domain;
-using Sessionator;
-using ADOX;
 
 namespace Database
 {
@@ -29,18 +18,16 @@ namespace Database
         #region "Variable declarations"
         public string usernamestringo;
         public string passwordstringo;
-        private readonly string[] exerciseTypeRange = new[] {"Cycling", "Running", "Swimming"};
+        private readonly string[] exerciseTypeRange = {"Cycling", "Running", "Swimming"};
 
-        private readonly string[] cyclingStyleRange = new[]
-        {
+        private readonly string[] cyclingStyleRange = {
             "<10 mph, leisure cycling", "10 - 11.9 mph, gentle", "12 - 13.9 mph, moderate", "14 - 15.9 mph, vigorous",
             "16 - 20 mph, very fast", ">20 mph, racing"
         };
 
-        private readonly string[] runningSpeedRange = new[] {"5 mph", "6 mph", "7 mph", "8 mph", "9 mph", "10 mph"};
+        private readonly string[] runningSpeedRange = {"5 mph", "6 mph", "7 mph", "8 mph", "9 mph", "10 mph"};
 
-        private readonly string[] swimmingStyleRange = new[]
-        {"Freestyle, slow", "Freestyle, fast", "Backstroke", "Breaststroke", "Butterfly"};
+        private readonly string[] swimmingStyleRange = {"Freestyle, slow", "Freestyle, fast", "Backstroke", "Breaststroke", "Butterfly"};
         #endregion
 
         public ClientMain()
@@ -81,10 +68,10 @@ namespace Database
                     string query =
                         "UPDATE TPersons SET [Name]=@Name, Height=@Height, Weight=@Weight, Bday=@Bday " + " WHERE UserName= @username";
                     cmd.CommandText = query;
-                    cmd.Parameters.AddWithValue("@Name", name.ToString());
+                    cmd.Parameters.AddWithValue("@Name", name);
                     cmd.Parameters.AddWithValue("@Height", heightint.ToString());
                     cmd.Parameters.AddWithValue("@Weight", weightint.ToString());
-                    cmd.Parameters.AddWithValue("@Bday", bday.ToString());
+                    cmd.Parameters.AddWithValue("@Bday", bday);
                     cmd.Parameters.AddWithValue("@username", usernamestringo);
                     
                     cmd.Connection = myCon;
@@ -111,7 +98,7 @@ namespace Database
                                          "Description: " + oleDbError.Message + "\n" +
                                          "Please consult with the software developer.";
                 }
-                MessageBox.Show(errorMessages.ToString());
+                MessageBox.Show(errorMessages);
             }
         }
         #endregion
@@ -249,7 +236,7 @@ namespace Database
                         break;
                 }
                 const string empty = "";
-                string cntPath = System.IO.Directory.GetCurrentDirectory();
+                string cntPath = Directory.GetCurrentDirectory();
                 using (OleDbConnection myCon = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + usernamestringo.ToLower() + "_LOG.accdb;"))
                 using (OleDbCommand cmd = new OleDbCommand())
                 {
@@ -291,7 +278,7 @@ namespace Database
                                          "Description: " + oleDbError.Message + "\n \n" +
                                          "Please consult with the software developer.";
                 }
-                MessageBox.Show(errorMessages.ToString());
+                MessageBox.Show(errorMessages);
             }
 
                 #endregion
@@ -317,7 +304,7 @@ namespace Database
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string cntPath = System.IO.Directory.GetCurrentDirectory();
+            string cntPath = Directory.GetCurrentDirectory();
             usernamestringo = Login.UsernameFromLogin;
             string tableName = usernamestringo + "_SESSIONS";
 
@@ -344,37 +331,95 @@ namespace Database
                 var show = String.Join(null, rawList.ToArray());
                 label10.Text = show;
 
-                char pipe = Convert.ToChar("|");
-                List<Result> ResultList = new List<Result>();
-                string[] splits = null;
-                
-
-                foreach (DataRow row in dsSet.Tables[0].Rows)
+                var showSplit = Regex.Split(show, " \\| ");
+                var doubleVBarSplit = Regex.Split(show, " \\|\\| "); // splits separate sessions
+                string dateSplit;
+                string timeSplit;
+                int duraSplit;
+                string typeSplit;
+                /*
+                 * Do bottom
+                 */
+                int i;
+                i = 1;
+                if (i < doubleVBarSplit.Length)
                 {
-                    var result = new Result();
-
-                    splits = String.Format("{0}", row["Running"]).Split(pipe);
-
-                    result.aDate = String.Format("{0}", splits[2]);
-                    result.Time = String.Format("{0}", splits[3]);
-                    result.Marker = String.Format("{0}", splits[4]);
-                    result.style = String.Format("{0}", splits[5]);
-                    ResultList.Add(result);
-
-                }
-
-                foreach (Result aresult in ResultList)
-                {
-                    var dateSplit = String.Format("{0}", aresult.aDate);
-                    var timeSplit = aresult.Time;
-                    var duraSplit = String.Format("{0}", aresult.Marker);
-                    var typeSplit = aresult.style;
+                    var session1 = doubleVBarSplit[1];
+                    var SplitIt1 = Regex.Split(session1, " \\| ");
+                    dateSplit = DateTime.Parse(s: SplitIt1[0]).ToShortDateString();
+                    timeSplit = string.Concat(SplitIt1[1]);
+                    duraSplit = int.Parse(SplitIt1[2]);
+                    typeSplit = string.Concat(SplitIt1[3]);
                     label11.Text = "Date: " + dateSplit + "\n " +
                                    "Time: " + timeSplit + "\n " +
                                    "Duration: " + duraSplit + "\n " +
                                    "Type: " + typeSplit + "\n \n ";
 
                 }
+                else
+                {
+                    foreach (var source in doubleVBarSplit.Skip(1))
+                    {
+                        
+                    }
+                }
+                
+
+
+                
+                /*
+                 * Do bottom
+                 */
+                i = 2;
+                if (i < doubleVBarSplit.Length)
+                {
+                    var session2 = doubleVBarSplit[2];
+                    var SplitIt2 = Regex.Split(session2, " \\| ");
+                    dateSplit = DateTime.Parse(SplitIt2[0]).ToShortDateString();
+                    timeSplit = string.Concat(SplitIt2[1]);
+                    duraSplit = int.Parse(SplitIt2[2]);
+                    typeSplit = string.Concat(SplitIt2[3]);
+                    label11.Text += "Date: " + dateSplit + "\n " +
+                                    "Time: " + timeSplit + "\n " +
+                                    "Duration: " + duraSplit + "\n " +
+                                    "Type: " + typeSplit + "\n \n ";
+                }
+                else
+                {
+                    foreach (var source in doubleVBarSplit.Skip(2))
+                    {
+                        
+                    }
+                }
+
+                i = 3;
+                if (i < doubleVBarSplit.Length)
+                {
+                    var session3 = doubleVBarSplit[3];
+                    var SplitIt3 = Regex.Split(session3, " \\| ");
+                    dateSplit = DateTime.Parse(SplitIt3[0]).ToShortDateString();
+                    timeSplit = string.Concat(SplitIt3[1]);
+                    duraSplit = int.Parse(SplitIt3[2]);
+                    typeSplit = string.Concat(SplitIt3[3]);
+                    label11.Text += "Date: " + dateSplit + "\n " +
+                                    "Time: " + timeSplit + "\n " +
+                                    "Duration: " + duraSplit + "\n " +
+                                    "Type: " + typeSplit + "\n \n ";
+                }
+                else
+                {
+                    foreach (var source in doubleVBarSplit.Skip(3))
+                    {
+                        
+                    }
+                }
+                
+
+                /*
+                 *  Do bottom
+                 */
+                
+                // can only view 3 sessions per sport per person as they will be resting afterwards
                 
 
 
