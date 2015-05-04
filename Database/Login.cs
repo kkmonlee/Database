@@ -97,11 +97,11 @@ namespace Database
                     Table tbl = new Table();
                     tbl.Name = TB_LoginUsername.Text + "_SESSIONS";
                     tbl.Columns.Append("ID", DataTypeEnum.adInteger);
-                    tbl.Columns.Append("UserName", DataTypeEnum.adVarWChar, 50);
+                    tbl.Columns.Append("UserName", DataTypeEnum.adVarWChar, 100);
                    // ClientMain.Load() will update UserName to TB_LoginUsername.Text or usernamestringo if you will
-                    tbl.Columns.Append("Cycling", DataTypeEnum.adVarWChar, 50);
-                    tbl.Columns.Append("Running", DataTypeEnum.adVarWChar, 50);
-                    tbl.Columns.Append("Swimming", DataTypeEnum.adVarWChar, 50);
+                    tbl.Columns.Append("Cycling", DataTypeEnum.adVarWChar, 100);
+                    tbl.Columns.Append("Running", DataTypeEnum.adVarWChar, 100);
+                    tbl.Columns.Append("Swimming", DataTypeEnum.adVarWChar, 100);
                     cat.Tables.Append(tbl);
                     System.Runtime.InteropServices.Marshal.FinalReleaseComObject(tbl);
                     System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat.Tables);
