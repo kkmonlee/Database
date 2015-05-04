@@ -110,6 +110,7 @@ namespace Database
             ////can't close parent form from child, will try to make it invisible
             //loginForm.Visible = false;
             exerciseStyleComboBox.Enabled = false;
+
             // Running labels
             RunningSession1.Visible = false;
             RunningSession2.Visible = false;
@@ -127,6 +128,15 @@ namespace Database
             CyclingCalories2.Visible = false;
             CyclingCalories3.Visible = false;
             CyclingTotalCalories.Visible = false;
+
+            // Swimming labels
+            SwimmingSession1.Visible = false;
+            SwimmingSession2.Visible = false;
+            SwimmingSession3.Visible = false;
+            SwimmingCalories1.Visible = false;
+            SwimmingCalories2.Visible = false;
+            SwimmingCalories3.Visible = false;
+            SwimmingTotalCalories.Visible = false;
 
 
 
@@ -903,7 +913,243 @@ namespace Database
 
         private void BT_SwimmingView_Click(object sender, EventArgs e)
         {
+            string cntPath = Directory.GetCurrentDirectory();
+            usernamestringo = Login.UsernameFromLogin;
+            string tableName = usernamestringo + "_SESSIONS";
 
+            List<string> rawList = new List<string>();
+            connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + usernamestringo.ToLower() + "_LOG.accdb;");
+            Sql = "SELECT * FROM " + tableName;
+
+            try
+            {
+                connection.Open();
+                oledbAdapter = new OleDbDataAdapter(Sql, connection);
+                DataSet dsSet = new DataSet();
+                oledbAdapter.Fill(dsSet);
+                foreach (DataRow row in dsSet.Tables[0].Rows)
+                {
+                    rawList.Add(row["Swimming"].ToString());
+                }
+                var show = String.Join(null, rawList.ToArray());
+                var doubleVBarSplit = Regex.Split(show, " \\|\\| ");
+                string dateSplit;
+                string timeSplit;
+                int duraSplit;
+                string typeSplit;
+                int calories;
+                int totalCalories = 0;
+
+                // Session 1
+                int i;
+                i = 1;
+                if (i < doubleVBarSplit.Length)
+                {
+                    var session1 = doubleVBarSplit[1];
+                    var SplitIt1 = Regex.Split(session1, " \\| ");
+                    dateSplit = DateTime.Parse(s: SplitIt1[0]).ToShortDateString();
+                    timeSplit = string.Concat(SplitIt1[1]);
+                    duraSplit = int.Parse(SplitIt1[2]);
+                    typeSplit = string.Concat(SplitIt1[3]);
+                    SwimmingSession1.Visible = true;
+                    SwimmingCalories1.Visible = true;
+                    SwimmingTotalCalories.Visible = true;
+                    SwimmingSession1.Text = "Date: " + dateSplit + "\n " +
+                                            "Time: " + timeSplit + "\n " +
+                                            "Duration: " + duraSplit + "\n " +
+                                            "Type: " + typeSplit + "\n \n ";
+                    if (typeSplit == "Freestyle, slow")
+                    {
+                        calories = 413*duraSplit;
+                        SwimmingCalories1.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        SwimmingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    if (typeSplit == "Freestyle, fast")
+                    {
+                        calories = 590*duraSplit;
+                        SwimmingCalories1.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        SwimmingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    if (typeSplit == "Backstroke")
+                    {
+                        calories = 413*duraSplit;
+                        SwimmingCalories1.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        SwimmingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    if (typeSplit == "Breastroke")
+                    {
+                        calories = 590*duraSplit;
+                        SwimmingCalories1.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        SwimmingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    if (typeSplit == "Butterfly")
+                    {
+                        calories = 649*duraSplit;
+                        SwimmingCalories1.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        SwimmingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    else
+                    {
+                        Exception ex = null;
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+                else
+                {
+                    label12.Text = "There are no logs! \n Try again.";
+                    foreach (var source in doubleVBarSplit.Skip(1))
+                    {
+                        
+                    }
+                }
+                SwimmingTotalCalories.Text = "You have burnt " + totalCalories + " calories.";
+
+                // Session 2
+                i = 2;
+                if (i < doubleVBarSplit.Length)
+                {
+                    var session2 = doubleVBarSplit[2];
+                    var SplitIt2 = Regex.Split(session2, " \\| ");
+                    dateSplit = DateTime.Parse(SplitIt2[0]).ToShortDateString();
+                    timeSplit = string.Concat(SplitIt2[1]);
+                    duraSplit = int.Parse(SplitIt2[2]);
+                    typeSplit = string.Concat(SplitIt2[3]);
+                    SwimmingSession2.Visible = true;
+                    SwimmingCalories2.Visible = true;
+                    SwimmingTotalCalories.Visible = true;
+                    SwimmingSession2.Text = "Date: " + dateSplit + "\n " +
+                                            "Time: " + timeSplit + "\n " +
+                                            "Duration: " + duraSplit + "\n " +
+                                            "Type: " + typeSplit + "\n \n ";
+                    if (typeSplit == "Freestyle, slow")
+                    {
+                        calories = 413*duraSplit;
+                        SwimmingCalories2.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        SwimmingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    if (typeSplit == "Freestyle, fast")
+                    {
+                        calories = 590*duraSplit;
+                        SwimmingCalories2.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        SwimmingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    if (typeSplit == "Backstroke")
+                    {
+                        calories = 413*duraSplit;
+                        SwimmingCalories2.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        SwimmingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    if (typeSplit == "Breastroke")
+                    {
+                        calories = 590*duraSplit;
+                        SwimmingCalories2.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        SwimmingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    if (typeSplit == "Butterfly")
+                    {
+                        calories = 649*duraSplit;
+                        SwimmingCalories2.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        SwimmingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    else
+                    {
+                        Exception ex = null;
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+                else
+                {
+                    foreach (var source in doubleVBarSplit.Skip(2))
+                    {
+                        
+                    }
+                }
+                SwimmingTotalCalories.Text = "You have burnt " + totalCalories + " calories.";
+
+                // Session 3
+                i = 3;
+                if (i < doubleVBarSplit.Length)
+                {
+                    var session3 = doubleVBarSplit[3];
+                    var SplitIt3 = Regex.Split(session3, " \\| ");
+                    dateSplit = DateTime.Parse(SplitIt3[0]).ToShortDateString();
+                    timeSplit = string.Concat(SplitIt3[1]);
+                    duraSplit = int.Parse(SplitIt3[2]);
+                    typeSplit = string.Concat(SplitIt3[3]);
+                    SwimmingSession3.Visible = true;
+                    SwimmingCalories3.Visible = true;
+                    SwimmingTotalCalories.Visible = true;
+                    SwimmingSession3.Text = "Date: " + dateSplit + "\n " +
+                                            "Time: " + timeSplit + "\n " +
+                                            "Duration: " + duraSplit + "\n " +
+                                            "Type: " + typeSplit + "\n \n ";
+                    if (typeSplit == "Freestyle, slow")
+                    {
+                        calories = 413*duraSplit;
+                        SwimmingCalories3.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        SwimmingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    if (typeSplit == "Freestyle, fast")
+                    {
+                        calories = 590*duraSplit;
+                        SwimmingCalories3.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        SwimmingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    if (typeSplit == "Backstroke")
+                    {
+                        calories = 413*duraSplit;
+                        SwimmingCalories3.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        SwimmingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    if (typeSplit == "Breastroke")
+                    {
+                        calories = 590*duraSplit;
+                        SwimmingCalories3.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        SwimmingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    if (typeSplit == "Butterfly")
+                    {
+                        calories = 649*duraSplit;
+                        SwimmingCalories3.Text = @"You burnt " + calories + @" calories";
+                        totalCalories += calories;
+                        SwimmingTotalCalories.Text = totalCalories.ToString();
+                    }
+                    else
+                    {
+                        Exception ex = null;
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+                else
+                {
+                    foreach (var source in doubleVBarSplit.Skip(3))
+                    {
+                        
+                    }
+                }
+                SwimmingTotalCalories.Text = "You have burnt " + totalCalories + " calories.";
+            }
+            catch (OleDbException exception)
+            {
+                MessageBox.Show(exception.ToString());
+                
+            }
+            connection.Close();
+            connection.Dispose();
         }
 
     }
