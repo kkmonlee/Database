@@ -47,53 +47,60 @@
             // 
             // LB_LoginWelcome
             // 
-            this.LB_LoginWelcome.Location = new System.Drawing.Point(12, 9);
+            this.LB_LoginWelcome.Location = new System.Drawing.Point(16, 11);
+            this.LB_LoginWelcome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LB_LoginWelcome.Name = "LB_LoginWelcome";
-            this.LB_LoginWelcome.Size = new System.Drawing.Size(307, 35);
+            this.LB_LoginWelcome.Size = new System.Drawing.Size(409, 43);
             this.LB_LoginWelcome.TabIndex = 0;
             this.LB_LoginWelcome.Text = "Welcome to the Running Club Software! Enter your username and password to continu" +
     "e.";
             // 
             // TB_LoginUsername
             // 
-            this.TB_LoginUsername.Location = new System.Drawing.Point(111, 57);
+            this.TB_LoginUsername.Location = new System.Drawing.Point(148, 70);
+            this.TB_LoginUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TB_LoginUsername.Name = "TB_LoginUsername";
-            this.TB_LoginUsername.Size = new System.Drawing.Size(208, 20);
+            this.TB_LoginUsername.PasswordChar = '*';
+            this.TB_LoginUsername.Size = new System.Drawing.Size(276, 22);
             this.TB_LoginUsername.TabIndex = 1;
             this.TB_LoginUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_LoginUsername_KeyDown);
             // 
             // LB_LoginUsername
             // 
             this.LB_LoginUsername.AutoSize = true;
-            this.LB_LoginUsername.Location = new System.Drawing.Point(12, 60);
+            this.LB_LoginUsername.Location = new System.Drawing.Point(16, 74);
+            this.LB_LoginUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LB_LoginUsername.Name = "LB_LoginUsername";
-            this.LB_LoginUsername.Size = new System.Drawing.Size(58, 13);
+            this.LB_LoginUsername.Size = new System.Drawing.Size(77, 17);
             this.LB_LoginUsername.TabIndex = 2;
             this.LB_LoginUsername.Text = "Username:";
             // 
             // LB_LoginPassword
             // 
             this.LB_LoginPassword.AutoSize = true;
-            this.LB_LoginPassword.Location = new System.Drawing.Point(12, 97);
+            this.LB_LoginPassword.Location = new System.Drawing.Point(16, 119);
+            this.LB_LoginPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LB_LoginPassword.Name = "LB_LoginPassword";
-            this.LB_LoginPassword.Size = new System.Drawing.Size(56, 13);
+            this.LB_LoginPassword.Size = new System.Drawing.Size(73, 17);
             this.LB_LoginPassword.TabIndex = 3;
             this.LB_LoginPassword.Text = "Password:";
             // 
             // TB_LoginPassword
             // 
-            this.TB_LoginPassword.Location = new System.Drawing.Point(111, 94);
+            this.TB_LoginPassword.Location = new System.Drawing.Point(148, 116);
+            this.TB_LoginPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TB_LoginPassword.Name = "TB_LoginPassword";
-            this.TB_LoginPassword.Size = new System.Drawing.Size(208, 20);
+            this.TB_LoginPassword.Size = new System.Drawing.Size(276, 22);
             this.TB_LoginPassword.TabIndex = 4;
             this.TB_LoginPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_LoginPassword_KeyDown);
             // 
             // LB_LoginRegister
             // 
             this.LB_LoginRegister.AutoSize = true;
-            this.LB_LoginRegister.Location = new System.Drawing.Point(225, 171);
+            this.LB_LoginRegister.Location = new System.Drawing.Point(300, 210);
+            this.LB_LoginRegister.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LB_LoginRegister.Name = "LB_LoginRegister";
-            this.LB_LoginRegister.Size = new System.Drawing.Size(106, 13);
+            this.LB_LoginRegister.Size = new System.Drawing.Size(141, 17);
             this.LB_LoginRegister.TabIndex = 5;
             this.LB_LoginRegister.TabStop = true;
             this.LB_LoginRegister.Text = "Click here to register!";
@@ -101,9 +108,10 @@
             // 
             // BT_LoginLogin
             // 
-            this.BT_LoginLogin.Location = new System.Drawing.Point(220, 130);
+            this.BT_LoginLogin.Location = new System.Drawing.Point(293, 160);
+            this.BT_LoginLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BT_LoginLogin.Name = "BT_LoginLogin";
-            this.BT_LoginLogin.Size = new System.Drawing.Size(99, 23);
+            this.BT_LoginLogin.Size = new System.Drawing.Size(132, 28);
             this.BT_LoginLogin.TabIndex = 6;
             this.BT_LoginLogin.Text = "Sign in";
             this.BT_LoginLogin.UseVisualStyleBackColor = true;
@@ -120,21 +128,22 @@
             this.toolStripProgressBar1,
             this.toolStripStatusLabel1,
             this.BT_toolStripAdmin});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 184);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 228);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(331, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(441, 26);
             this.statusStrip1.TabIndex = 9;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripProgressBar1
             // 
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(133, 20);
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(151, 21);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
             // 
@@ -145,15 +154,15 @@
             this.BT_toolStripAdmin.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BT_toolStripAdmin.IsLink = true;
             this.BT_toolStripAdmin.Name = "BT_toolStripAdmin";
-            this.BT_toolStripAdmin.Size = new System.Drawing.Size(16, 17);
+            this.BT_toolStripAdmin.Size = new System.Drawing.Size(16, 21);
             this.BT_toolStripAdmin.Text = "toolStripSplitButton1";
             this.BT_toolStripAdmin.Click += new System.EventHandler(this.BT_toolStripAdmin_Click);
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(331, 206);
+            this.ClientSize = new System.Drawing.Size(441, 254);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.BT_LoginLogin);
             this.Controls.Add(this.LB_LoginRegister);
@@ -163,6 +172,7 @@
             this.Controls.Add(this.TB_LoginUsername);
             this.Controls.Add(this.LB_LoginWelcome);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
