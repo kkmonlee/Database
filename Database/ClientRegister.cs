@@ -53,7 +53,7 @@ namespace Database
                 }
                 else
                 {
-                    if (textBox1.Text != "" && textBox2.Text != textBox3.Text)
+                    if (textBox1.Text != "" && textBox2.Text == textBox3.Text)
                     // If username textbox is not null and the password textboxes match then
                     {
                         var p = new Person();
