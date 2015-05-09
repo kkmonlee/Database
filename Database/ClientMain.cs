@@ -11,83 +11,68 @@ namespace Database
 {
     public partial class ClientMain : Form
     {
-        int i = 1;
-        private string Sql;
         private OleDbConnection connection;
+        private int i = 1;
         private OleDbDataAdapter oledbAdapter;
-        #region "Variable declarations"
-        public string usernamestringo;
-        public string passwordstringo;
-        private readonly string[] exerciseTypeRange = {"Cycling", "Running", "Swimming"};
-
-        private readonly string[] cyclingStyleRange = {
-            "<10 mph, leisure cycling", "10 - 11.9 mph, gentle", "12 - 13.9 mph, moderate", "14 - 15.9 mph, vigorous",
-            "16 - 20 mph, very fast", ">20 mph, racing"
-        };
-
-        private readonly string[] runningSpeedRange = {"5 mph", "6 mph", "7 mph", "8 mph", "9 mph", "10 mph"};
-
-        private readonly string[] swimmingStyleRange = {"Freestyle, slow", "Freestyle, fast", "Backstroke", "Breaststroke", "Butterfly"};
-        #endregion
+        private string Sql;
 
         public ClientMain()
         {
-            
             InitializeComponent();
             exerciseTypeComboBox.SelectedIndexChanged += exerciseTypeComboBox_SelectedIndexChanged;
             exerciseTypeComboBox.Items.AddRange(exerciseTypeRange);
 
             //Login signin = new Login(ident);
             //signin.Show();
-
-
         }
+
         #region "Update tab args"
+
         private void BT_ClientSave_Click(object sender, EventArgs e)
         {
             try
             {
-
-
-                string height = TB_ClientHeight.Text;
-                string weight = TB_ClientWeight.Text;
-                string name = TB_ClientName.Text;
-                string bday = dateTimePicker1.Value.ToString("dd-MM-yyyy");
-                int heightint = Convert.ToInt32(height);
-                int weightint = Convert.ToInt32(weight);
+                var height = TB_ClientHeight.Text;
+                var weight = TB_ClientWeight.Text;
+                var name = TB_ClientName.Text;
+                var bday = dateTimePicker1.Value.ToString("dd-MM-yyyy");
+                var heightint = Convert.ToInt32(height);
+                var weightint = Convert.ToInt32(weight);
                 // MessageBox.Show(bdint.ToString());
-   
+
                 usernamestringo = Login.UsernameFromLogin;
-                passwordstringo = Login.passwordFromLogin;
-                
-                
-                using (OleDbConnection myCon = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=A:\Users\Atul Anand Sinha\Documents\Visual Studio 2013\Projects\Database\Database.accdb;Persist Security Info=False"))
-                using (OleDbCommand cmd = new OleDbCommand())
+                //passwordstringo = Login.passwordFromLogin;
+
+
+                using (
+                    var myCon =
+                        new OleDbConnection(
+                            @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=A:\Users\Atul Anand Sinha\Documents\Visual Studio 2013\Projects\Database\Database.accdb;Persist Security Info=False")
+                    )
+                using (var cmd = new OleDbCommand())
                 {
                     cmd.CommandType = CommandType.Text;
-                    string query =
-                        "UPDATE TPersons SET [Name]=@Name, Height=@Height, Weight=@Weight, Bday=@Bday " + " WHERE UserName= @username";
+                    var query =
+                        "UPDATE TPersons SET [Name]=@Name, Height=@Height, Weight=@Weight, Bday=@Bday " +
+                        " WHERE UserName= @username";
                     cmd.CommandText = query;
                     cmd.Parameters.AddWithValue("@Name", name);
                     cmd.Parameters.AddWithValue("@Height", heightint.ToString());
                     cmd.Parameters.AddWithValue("@Weight", weightint.ToString());
                     cmd.Parameters.AddWithValue("@Bday", bday);
                     cmd.Parameters.AddWithValue("@username", usernamestringo);
-                    
+
                     cmd.Connection = myCon;
                     myCon.Open();
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     cmd.Parameters.Clear();
                 }
-
-                
-
             }
             catch (OleDbException exception)
             {
-                string errorMessages = "";
-                for (int i = 0; i < exception.Errors.Count; i++)
+                var errorMessages = "";
+                for (var i = 0; i < exception.Errors.Count; i++)
                 {
                     var oleDbError = exception.Errors[i];
                     if (oleDbError != null)
@@ -101,7 +86,9 @@ namespace Database
                 MessageBox.Show(errorMessages);
             }
         }
+
         #endregion
+
         private void ClientMain_Load(object sender, EventArgs e)
         {
             //var loginForm = new Login();
@@ -138,7 +125,6 @@ namespace Database
             SwimmingTotalCalories.Visible = false;
 
 
-
             //try
             //{
             //    string tableName = usernamestringo + "_SESSIONS";
@@ -158,7 +144,6 @@ namespace Database
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -169,13 +154,13 @@ namespace Database
 
         private void exerciseTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedValue = exerciseTypeComboBox.SelectedItem as string;
+            var selectedValue = exerciseTypeComboBox.SelectedItem as string;
             // converts the item in the combo box ie. the sport to a string and then uses that to change the
             // options for the second combobox :)
             exerciseStyleComboBox.Enabled = true;
             switch (selectedValue)
             {
-                case  "Cycling":
+                case "Cycling":
                     exerciseStyleComboBox.Items.Clear();
                     exerciseStyleComboBox.Items.AddRange(cyclingStyleRange);
                     break;
@@ -190,20 +175,20 @@ namespace Database
                     exerciseStyleComboBox.Items.AddRange(swimmingStyleRange);
                     break;
             }
-            
         }
 
         private void BT_Reset_Click(object sender, EventArgs e)
         {
             #region "Reset button args
+
             SessiondateTimePicker.ResetText();
             hourComboBox.SelectedIndex = -1;
             minuteComboBox.SelectedIndex = -1;
             TB_Duration.Text = null;
             exerciseStyleComboBox.SelectedIndex = -1;
             exerciseTypeComboBox.SelectedIndex = -1;
-            #endregion
 
+            #endregion
         }
 
         private void BT_Log_Click(object sender, EventArgs e)
@@ -211,35 +196,38 @@ namespace Database
             try
             {
                 #region "Log tab args"
+
                 #region "Declaring/testing variables
 
                 usernamestringo = Login.UsernameFromLogin;
-                string tableName = usernamestringo + "_SESSIONS";
-                string date = SessiondateTimePicker.Value.ToString("dd-MM-yyyy");
+                var tableName = usernamestringo + "_SESSIONS";
+                var date = SessiondateTimePicker.Value.ToString("dd-MM-yyyy");
                 //string hourTime = hourComboBox.SelectedIndex.ToString();
-                int hourTime = int.Parse(hourComboBox.SelectedItem.ToString());
-                
+                var hourTime = int.Parse(hourComboBox.SelectedItem.ToString());
+
                 // BUG: hourTime returns value of (hour - 1)
                 // BUG FIXED: parsed hourTime as an integer
 
-                int minuteTime = int.Parse(minuteComboBox.SelectedItem.ToString());
+                var minuteTime = int.Parse(minuteComboBox.SelectedItem.ToString());
 
                 // check where the problem is
                 //MessageBox.Show(hourTime + " " + minuteTime);
-                int duration = int.Parse(TB_Duration.Text);
-                string exerciseType = exerciseTypeComboBox.SelectedItem.ToString();
-                string exerciseStyle = exerciseStyleComboBox.SelectedItem.ToString();
+                var duration = int.Parse(TB_Duration.Text);
+                var exerciseType = exerciseTypeComboBox.SelectedItem.ToString();
+                var exerciseStyle = exerciseStyleComboBox.SelectedItem.ToString();
 
                 //MessageBox.Show("Date " + date + "\n" +
                 //                "Time: " + hourTime + ":" + minuteTime + "\n" +
                 //                "Duration: " + duration + "\n" +
                 //                "Exercise Type: " + exerciseType + "\n" +
                 //                "Exercise Style: " + exerciseStyle + "\n");
+
                 #endregion
 
                 #region "Adding session into log"
+
                 //int id = i + 1;
-                
+
 
                 var exerciseTypeQuery = "[" + exerciseType + "]";
                 var totalTime = hourTime + ":" + minuteTime;
@@ -265,16 +253,19 @@ namespace Database
                         break;
                 }
                 const string empty = "";
-                string cntPath = Directory.GetCurrentDirectory();
-                using (OleDbConnection myCon = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + usernamestringo.ToLower() + "_LOG.accdb;"))
-                using (OleDbCommand cmd = new OleDbCommand())
+                var cntPath = Directory.GetCurrentDirectory();
+                using (
+                    var myCon =
+                        new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" +
+                                            usernamestringo.ToLower() + "_LOG.accdb;"))
+                using (var cmd = new OleDbCommand())
                 {
-
-
                     i++;
 
                     cmd.CommandType = CommandType.Text;
-                    string query = "INSERT INTO " + tableName + " (" + exerciseTypeQuery + ", [ID], [UserName], " + otherExercise1 + "," + otherExercise2 + ") VALUES(@exerciseTypeQuery, @id, @username, @unusedExercise1, @unusedExercise2)";
+                    var query = "INSERT INTO " + tableName + " (" + exerciseTypeQuery + ", [ID], [UserName], " +
+                                otherExercise1 + "," + otherExercise2 +
+                                ") VALUES(@exerciseTypeQuery, @id, @username, @unusedExercise1, @unusedExercise2)";
                     cmd.CommandText = query;
                     cmd.Parameters.AddWithValue("@exerciseTypeQuery", insertQuery);
                     cmd.Parameters.AddWithValue("@id", i.ToString());
@@ -285,18 +276,17 @@ namespace Database
                     cmd.Connection = myCon;
                     myCon.Open();
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show(@"Your record has been logged in!", @"Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(@"Your record has been logged in!", @"Success", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                     cmd.Parameters.Clear();
-
                 }
+
                 #endregion
-
-
             }
             catch (OleDbException exception)
             {
-                string errorMessages = "";
-                for (int i = 0; i < exception.Errors.Count; i++)
+                var errorMessages = "";
+                for (var i = 0; i < exception.Errors.Count; i++)
                 {
                     var oleDbError = exception.Errors[i];
                     if (oleDbError != null)
@@ -310,7 +300,7 @@ namespace Database
                 MessageBox.Show(errorMessages);
             }
 
-                #endregion
+            #endregion
         }
 
         //public List<string> ParseWords(string s)
@@ -333,30 +323,32 @@ namespace Database
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string cntPath = Directory.GetCurrentDirectory();
+            var cntPath = Directory.GetCurrentDirectory();
             usernamestringo = Login.UsernameFromLogin;
-            string tableName = usernamestringo + "_SESSIONS";
+            var tableName = usernamestringo + "_SESSIONS";
 
-            List<string> rawList = new List<string>();
+            var rawList = new List<string>();
             //int a;
             //int b;
-            connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + usernamestringo.ToLower() + "_LOG.accdb;");
+            connection =
+                new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" +
+                                    usernamestringo.ToLower() + "_LOG.accdb;");
             Sql = "SELECT * FROM " + tableName;
-            
+
             try
             {
                 connection.Open();
                 oledbAdapter = new OleDbDataAdapter(Sql, connection);
 
-                DataSet dsSet = new DataSet();
+                var dsSet = new DataSet();
                 oledbAdapter.Fill(dsSet);
                 foreach (DataRow row in dsSet.Tables[0].Rows)
                 {
                     rawList.Add(row["Running"].ToString());
                 }
-                
+
                 // convert List<string> to single string
-                
+
                 var show = String.Join(null, rawList.ToArray());
                 //label10.Text = show;
 
@@ -368,7 +360,7 @@ namespace Database
                 int duraSplit;
                 string typeSplit;
                 int calories;
-                int totalCalories = 0;
+                var totalCalories = 0;
                 /*
                  * Do bottom
                  */
@@ -386,9 +378,9 @@ namespace Database
                     RunningCalories1.Visible = true;
                     RunningTotalCalories.Visible = true;
                     RunningSession1.Text = "Date: " + dateSplit + "\n " +
-                                   "Time: " + timeSplit + "\n " +
-                                   "Duration: " + duraSplit + "\n " +
-                                   "Type: " + typeSplit + "\n \n ";
+                                           "Time: " + timeSplit + "\n " +
+                                           "Duration: " + duraSplit + "\n " +
+                                           "Type: " + typeSplit + "\n \n ";
                     if (typeSplit == "5 mph")
                     {
                         calories = 472*duraSplit;
@@ -419,7 +411,7 @@ namespace Database
                     }
                     else if (typeSplit == "9 mph")
                     {
-                        calories = 885 * duraSplit;
+                        calories = 885*duraSplit;
                         RunningCalories1.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
                         RunningTotalCalories.Text = totalCalories.ToString();
@@ -442,13 +434,10 @@ namespace Database
                     label11.Text = "There are no logs! \n Try again.";
                     foreach (var source in doubleVBarSplit.Skip(1))
                     {
-                        
                     }
                 }
-                
 
 
-                
                 /*
                  * Do bottom
                  */
@@ -465,47 +454,47 @@ namespace Database
                     RunningCalories2.Visible = true;
                     RunningTotalCalories.Visible = true;
                     RunningSession2.Text = "Date: " + dateSplit + "\n " +
-                                    "Time: " + timeSplit + "\n " +
-                                    "Duration: " + duraSplit + "\n " +
-                                    "Type: " + typeSplit + "\n \n ";
+                                           "Time: " + timeSplit + "\n " +
+                                           "Duration: " + duraSplit + "\n " +
+                                           "Type: " + typeSplit + "\n \n ";
                     if (typeSplit == "5 mph")
                     {
-                        calories = 472 * duraSplit;
+                        calories = 472*duraSplit;
                         RunningCalories2.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
                         RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "6 mph")
                     {
-                        calories = 590 * duraSplit;
+                        calories = 590*duraSplit;
                         RunningCalories2.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
                         RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "7 mph")
                     {
-                        calories = 679 * duraSplit;
+                        calories = 679*duraSplit;
                         RunningCalories2.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
                         RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "8 mph")
                     {
-                        calories = 797 * duraSplit;
+                        calories = 797*duraSplit;
                         RunningCalories2.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
                         RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "9 mph")
                     {
-                        calories = 885 * duraSplit;
+                        calories = 885*duraSplit;
                         RunningCalories2.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
                         RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "10 mph")
                     {
-                        calories = 944 * duraSplit;
+                        calories = 944*duraSplit;
                         RunningCalories2.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
                         RunningTotalCalories.Text = totalCalories.ToString();
@@ -520,7 +509,6 @@ namespace Database
                 {
                     foreach (var source in doubleVBarSplit.Skip(2))
                     {
-                        
                     }
                 }
 
@@ -537,47 +525,47 @@ namespace Database
                     RunningCalories3.Visible = true;
                     RunningTotalCalories.Visible = true;
                     RunningSession3.Text = "Date: " + dateSplit + "\n " +
-                                    "Time: " + timeSplit + "\n " +
-                                    "Duration: " + duraSplit + "\n " +
-                                    "Type: " + typeSplit + "\n \n ";
+                                           "Time: " + timeSplit + "\n " +
+                                           "Duration: " + duraSplit + "\n " +
+                                           "Type: " + typeSplit + "\n \n ";
                     if (typeSplit == "5 mph")
                     {
-                        calories = 472 * duraSplit;
+                        calories = 472*duraSplit;
                         RunningCalories3.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
                         RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "6 mph")
                     {
-                        calories = 590 * duraSplit;
+                        calories = 590*duraSplit;
                         RunningCalories3.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
                         RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "7 mph")
                     {
-                        calories = 679 * duraSplit;
+                        calories = 679*duraSplit;
                         RunningCalories3.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
                         RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "8 mph")
                     {
-                        calories = 797 * duraSplit;
+                        calories = 797*duraSplit;
                         RunningCalories3.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
                         RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "9 mph")
                     {
-                        calories = 885 * duraSplit;
+                        calories = 885*duraSplit;
                         RunningCalories3.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
                         RunningTotalCalories.Text = totalCalories.ToString();
                     }
                     else if (typeSplit == "10 mph")
                     {
-                        calories = 944 * duraSplit;
+                        calories = 944*duraSplit;
                         RunningCalories3.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
                         RunningTotalCalories.Text = totalCalories.ToString();
@@ -592,7 +580,6 @@ namespace Database
                 {
                     foreach (var source in doubleVBarSplit.Skip(3))
                     {
-                        
                     }
                 }
                 RunningTotalCalories.Text += @" calories burnt in total";
@@ -603,8 +590,6 @@ namespace Database
                  */
 
                 // can only view 3 sessions per sport per person as they will be resting afterwards
-
-
 
 
                 //string parsed = ""; // where parsed  string will be stored
@@ -633,7 +618,6 @@ namespace Database
                 string display = rawList.Aggregate<string>((a, b) => a + b);
                 MessageBox.Show(display);
                  */
-
             }
             catch (OleDbException exception)
             {
@@ -645,12 +629,14 @@ namespace Database
 
         private void CyclingView_Click(object sender, EventArgs e)
         {
-            string cntPath = Directory.GetCurrentDirectory();
+            var cntPath = Directory.GetCurrentDirectory();
             usernamestringo = Login.UsernameFromLogin;
-            string tableName = usernamestringo + "_SESSIONS";
+            var tableName = usernamestringo + "_SESSIONS";
 
-            List<string> rawList = new List<string>();
-            connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + usernamestringo.ToLower() + "_LOG.accdb;");
+            var rawList = new List<string>();
+            connection =
+                new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" +
+                                    usernamestringo.ToLower() + "_LOG.accdb;");
             Sql = "SELECT * FROM " + tableName;
 
             try
@@ -660,12 +646,11 @@ namespace Database
                 // BEFORE: oledbAdapter = new OleDbDataAdapter();
                 // WAS GETTING ERROR: SelectCommand.Connection property has not been initialized.
                 // I had to pass the connection object on the adapter.
-                DataSet dsSet = new DataSet();
+                var dsSet = new DataSet();
                 oledbAdapter.Fill(dsSet);
                 foreach (DataRow row in dsSet.Tables[0].Rows)
                 {
                     rawList.Add(row["Cycling"].ToString());
-
                 }
 
                 var show = String.Join(null, rawList.ToArray());
@@ -675,7 +660,7 @@ namespace Database
                 int duraSplit;
                 string typeSplit;
                 int calories;
-                int totalCalories = 0;
+                var totalCalories = 0;
 
                 //Session 1
                 int i;
@@ -748,7 +733,6 @@ namespace Database
                     label10.Text = "There are no logs! \n Try again.";
                     foreach (var source in doubleVBarSplit.Skip(1))
                     {
-                        
                     }
                 }
                 CyclingTotalCalories.Text = "You have burnt " + totalCalories + " calories.";
@@ -822,7 +806,6 @@ namespace Database
                 {
                     foreach (var source in doubleVBarSplit.Skip(2))
                     {
-                        
                     }
                 }
                 CyclingTotalCalories.Text = "You have burnt " + totalCalories + " calories.";
@@ -896,11 +879,9 @@ namespace Database
                 {
                     foreach (var source in doubleVBarSplit.Skip(3))
                     {
-                        
                     }
                 }
                 CyclingTotalCalories.Text = "You have burnt " + totalCalories + " calories.";
-
             }
             catch (OleDbException exception)
             {
@@ -912,19 +893,21 @@ namespace Database
 
         private void BT_SwimmingView_Click(object sender, EventArgs e)
         {
-            string cntPath = Directory.GetCurrentDirectory();
+            var cntPath = Directory.GetCurrentDirectory();
             usernamestringo = Login.UsernameFromLogin;
-            string tableName = usernamestringo + "_SESSIONS";
+            var tableName = usernamestringo + "_SESSIONS";
 
-            List<string> rawList = new List<string>();
-            connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + usernamestringo.ToLower() + "_LOG.accdb;");
+            var rawList = new List<string>();
+            connection =
+                new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" +
+                                    usernamestringo.ToLower() + "_LOG.accdb;");
             Sql = "SELECT * FROM " + tableName;
 
             try
             {
                 connection.Open();
                 oledbAdapter = new OleDbDataAdapter(Sql, connection);
-                DataSet dsSet = new DataSet();
+                var dsSet = new DataSet();
                 oledbAdapter.Fill(dsSet);
                 foreach (DataRow row in dsSet.Tables[0].Rows)
                 {
@@ -937,7 +920,7 @@ namespace Database
                 int duraSplit;
                 string typeSplit;
                 int calories;
-                int totalCalories = 0;
+                var totalCalories = 0;
 
                 // Session 1
                 int i;
@@ -979,7 +962,7 @@ namespace Database
                         SwimmingTotalCalories.Text = totalCalories.ToString();
                     }
                     if (typeSplit == "Breaststroke")
-                        // BUG: Breaststroke spelled wrong.
+                        // BUG: Breaststroke was spelled wrong.
                     {
                         calories = 590*duraSplit;
                         SwimmingCalories1.Text = @"You burnt " + calories + @" calories";
@@ -999,7 +982,6 @@ namespace Database
                     label12.Text = "There are no logs! \n Try again.";
                     foreach (var source in doubleVBarSplit.Skip(1))
                     {
-                        
                     }
                 }
                 SwimmingTotalCalories.Text = "You have burnt " + totalCalories + " calories.";
@@ -1061,7 +1043,6 @@ namespace Database
                 {
                     foreach (var source in doubleVBarSplit.Skip(2))
                     {
-                        
                     }
                 }
                 SwimmingTotalCalories.Text = "You have burnt " + totalCalories + " calories.";
@@ -1123,7 +1104,6 @@ namespace Database
                 {
                     foreach (var source in doubleVBarSplit.Skip(3))
                     {
-                        
                     }
                 }
                 SwimmingTotalCalories.Text = "You have burnt " + totalCalories + " calories.";
@@ -1131,11 +1111,31 @@ namespace Database
             catch (OleDbException exception)
             {
                 MessageBox.Show(exception.ToString());
-                
             }
             connection.Close();
             connection.Dispose();
         }
 
+        #region "Variable declarations"
+
+        public string usernamestringo;
+        //public string passwordstringo;
+        private readonly string[] exerciseTypeRange = {"Cycling", "Running", "Swimming"};
+
+        private readonly string[] cyclingStyleRange =
+        {
+            "<10 mph, leisure cycling", "10 - 11.9 mph, gentle", "12 - 13.9 mph, moderate", "14 - 15.9 mph, vigorous",
+            "16 - 20 mph, very fast", ">20 mph, racing"
+        };
+
+        private readonly string[] runningSpeedRange = {"5 mph", "6 mph", "7 mph", "8 mph", "9 mph", "10 mph"};
+
+        private readonly string[] swimmingStyleRange =
+        {
+            "Freestyle, slow", "Freestyle, fast", "Backstroke",
+            "Breaststroke", "Butterfly"
+        };
+
+        #endregion
     }
 }

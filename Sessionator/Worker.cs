@@ -7,29 +7,28 @@ namespace Sessionator
 {
     public class Worker
     {
-        OleDbConnection connection;
-        OleDbCommand command;
-        
-        
-        private void ConnectTo()
-        {
-            connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=A:\Users\Atul Anand Sinha\Documents\Visual Studio 2013\Projects\Database\Database.accdb;Persist Security Info=False");
-            command = connection.CreateCommand();
-
-            
-
-        }
+        private OleDbCommand command;
+        private OleDbConnection connection;
 
         public Worker()
         {
             ConnectTo();
         }
 
+        private void ConnectTo()
+        {
+            connection =
+                new OleDbConnection(
+                    @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=A:\Users\Atul Anand Sinha\Documents\Visual Studio 2013\Projects\Database\Database.accdb;Persist Security Info=False");
+            command = connection.CreateCommand();
+        }
+
         public void Insert(Person p)
         {
             try
             {
-                command.CommandText = "INSERT INTO TPersons ([UserName], [PassWord]) VALUES('" + p.UserName + "', '" + p.PassWord + "')";
+                command.CommandText = "INSERT INTO TPersons ([UserName], [PassWord]) VALUES('" + p.UserName + "', '" +
+                                      p.PassWord + "')";
                 // thanks to HansUp
                 // http://stackoverflow.com/questions/18222856/syntax-error-in-insert-into-statement-using-oledb
                 command.CommandType = CommandType.Text;
@@ -39,7 +38,6 @@ namespace Sessionator
             }
             catch (Exception)
             {
-
                 throw;
             }
             finally
@@ -50,26 +48,5 @@ namespace Sessionator
                 }
             }
         }
-
-        //public void Validate(Person p)
-        //{
-        //    try
-        //    {
-        //        command.CommandText = "SELECT * FROM TPersons WHERE UserName='" + p.UserName +"' AND PassWord='" + p.PassWord + "'";
-        //        command.CommandType = CommandType.Text;
-        //        connection.Open();
-        //        OleDbDataReader reader = command.ExecuteReader();
-
-                
-
-        //    }
-        //    catch (Exception)
-        //    {
-                
-        //        throw;
-        //    }
-        //}
-
-        
     }
 }

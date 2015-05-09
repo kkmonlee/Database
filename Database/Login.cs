@@ -22,22 +22,18 @@ namespace Database
 
     public partial class Login : Form
     {
-        
         public static string usernameFromLogin;
         public static string passwordFromLogin;
-        
 
         public Login()
         {
             InitializeComponent();
-            
         }
 
         public Login(string ident)
         {
-
             InitializeComponent();
-            
+
             BT_toolStripAdmin.Alignment = ToolStripItemAlignment.Right;
             // tried to align it to the right.
             // setting boundaries
@@ -45,7 +41,7 @@ namespace Database
             toolStripProgressBar1.Minimum = 0;
             //timer1.Enabled = true;
             toolStripStatusLabel1.Visible = false;
-            TB_LoginUsername.Text = ident;
+            //TB_LoginUsername.Text = ident;
             /*
              * Create a session database for every user
              */
@@ -59,28 +55,34 @@ namespace Database
             set { usernameFromLogin = value; }
         }
 
-
         private void BT_LoginLogin_Click(object sender, EventArgs e)
         {
             var a = 0;
+
             #region "Timer arguments"
+
             timer1.Start();
             toolStripStatusLabel1.Visible = true;
             toolStripStatusLabel1.Text = "Loading";
+
             #endregion
+
             #region "Create user arguments"
+
             try
             {
-                
                 a += 1;
-                
-                
+
                 #endregion
 
                 usernameFromLogin = TB_LoginUsername.Text;
-                const string constring = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=A:\Users\Atul Anand Sinha\Documents\Visual Studio 2013\Projects\Database\Database.accdb;Persist Security Info=False";
-                OleDbConnection connection = new OleDbConnection(constring);
-                OleDbCommand command = new OleDbCommand("SELECT * FROM TPersons WHERE UserName='" + TB_LoginUsername.Text + "' AND PassWord='" + TB_LoginPassword.Text + "';", connection);
+                const string constring =
+                    @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=A:\Users\Atul Anand Sinha\Documents\Visual Studio 2013\Projects\Database\Database.accdb;Persist Security Info=False";
+                var connection = new OleDbConnection(constring);
+                var command =
+                    new OleDbCommand(
+                        "SELECT * FROM TPersons WHERE UserName='" + TB_LoginUsername.Text + "' AND PassWord='" +
+                        TB_LoginPassword.Text + "';", connection);
                 OleDbDataReader reader;
                 {
                     connection.Open();
@@ -96,32 +98,22 @@ namespace Database
                             MessageBox.Show("Login successful!", "Success!", MessageBoxButtons.OK,
                                 MessageBoxIcon.Information) == DialogResult.OK)
                         {
-                            var clientForm = new ClientMain();
-                            ////var loginForm = new Login();
-                            //clientForm.Show();
-                            ////loginForm.Close();
-                            ////raises exceptions, will use this in clientForm.Load()
-                            ////i'll just disable this form
-                            //foreach (Control c in Controls)
-                            //{
-                            //    c.Enabled = false;
-                            //}
-
-                            /*
-                             * ShowDialog is amazing!
-                             */
-                            clientForm.ShowDialog();
+                            using (var clientForm = new ClientMain())
+                            {
+                                clientForm.ShowDialog();
+                            }
                             connection.Dispose();
+
                             #region "Create log database args"
 
-
                             Catalog cat = new CatalogClass();
-                            string cntPath = Directory.GetCurrentDirectory();
-                            string createStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + TB_LoginUsername.Text.ToLower() + "_LOG.accdb;";
+                            var cntPath = Directory.GetCurrentDirectory();
+                            var createStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" +
+                                            TB_LoginUsername.Text.ToLower() + "_LOG.accdb;";
                             if (!File.Exists(cntPath + "\\" + TB_LoginUsername.Text.ToLower() + "_LOG.accdb"))
                             {
                                 cat.Create(createStr);
-                                Table tbl = new Table();
+                                var tbl = new Table();
                                 tbl.Name = TB_LoginUsername.Text + "_SESSIONS";
                                 tbl.Columns.Append("ID", DataTypeEnum.adInteger);
                                 tbl.Columns.Append("UserName", DataTypeEnum.adVarWChar, 100);
@@ -146,13 +138,15 @@ namespace Database
                                     var tableau = TB_LoginUsername.Text + "_SESSIONS";
                                     var usernametostring = TB_LoginUsername.Text;
                                     var startPath = Directory.GetCurrentDirectory();
-                                    OleDbConnection myCon =
-                                        new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + startPath + "\\" +
+                                    var myCon =
+                                        new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" +
+                                                            startPath + "\\" +
                                                             TB_LoginUsername.Text.ToLower() + "_LOG.accdb;");
-                                    OleDbCommand cmd = new OleDbCommand();
+                                    var cmd = new OleDbCommand();
 
                                     cmd.CommandType = CommandType.Text;
-                                    var query = "INSERT INTO " + tableau + " ([UserName], [ID], [Cycling], [Running], [Swimming]) VALUES(@username, @id, @cycling, @running, @swimming)";
+                                    var query = "INSERT INTO " + tableau +
+                                                " ([UserName], [ID], [Cycling], [Running], [Swimming]) VALUES(@username, @id, @cycling, @running, @swimming)";
                                     cmd.CommandText = query;
                                     cmd.Parameters.AddWithValue("@username", usernametostring);
                                     cmd.Parameters.AddWithValue("@id", a);
@@ -170,14 +164,11 @@ namespace Database
                                     MessageBox.Show("Username has been entered in your session database!");
                                     cmd.Parameters.Clear();
                                     //myCon.Dispose();
-
                                 }
                                 catch (OleDbException ex)
                                 {
                                     MessageBox.Show(ex.ToString());
                                 }
-
-
                             }
                         }
                     }
@@ -186,7 +177,6 @@ namespace Database
                         toolStripStatusLabel1.Visible = true;
                         toolStripStatusLabel1.Text = "Try again!";
                         MessageBox.Show("Duplicate username or password");
-                        
                     }
                     else
                     {
@@ -194,7 +184,6 @@ namespace Database
                         toolStripStatusLabel1.Text = "Try again!";
                         MessageBox.Show("Username or password do not match.");
                         //ProgBarColor.SetState(toolStripProgressBar1, 2);
-                        
                     }
                 }
             }
@@ -215,23 +204,18 @@ namespace Database
                 MessageBox.Show(errorMessages);
                 throw;
             }
+
             #endregion
-            
-
-
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
             toolStripProgressBar1.Value += 25;
             //else if (toolStripProgressBar1.Value > 0)
             //{
             //    toolStripProgressBar1.Value = 0;
             //    toolStripProgressBar1.Value += 25;
             //}
-            
-            
 
 
             /// could invert if to prevent nesting
@@ -242,7 +226,7 @@ namespace Database
             /// this.Hide(); // hides the login, i'll need this later
             ///timer1.Stop();
             /// 
-            
+
             if (toolStripProgressBar1.Value == 100)
             {
                 // Client Form opens
@@ -251,8 +235,6 @@ namespace Database
                 //this.Hide(); // hides the login, i'll need this later
                 timer1.Stop();
                 toolStripStatusLabel1.Text = "Loaded!";
-
-
             }
             /// <summary>
             /// Diagnostics
@@ -262,7 +244,6 @@ namespace Database
             ///    MessageBox.Show("Form is open Atul");
             ///}
             /// </summary>
-
         }
 
         private void BT_toolStripAdmin_Click(object sender, EventArgs e)
@@ -284,18 +265,21 @@ namespace Database
 
         private void toolStripStatusLabel1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void TB_LoginPassword_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Enter) return;
             BT_LoginLogin.PerformClick();
+
             #region "Timer arguments"
+
             timer1.Start();
             toolStripStatusLabel1.Visible = true;
             toolStripStatusLabel1.Text = "Loading";
+
             #endregion
+
             // time to stop the handling errors
             e.SuppressKeyPress = true;
             e.Handled = true;
@@ -315,9 +299,5 @@ namespace Database
             e.SuppressKeyPress = true;
             e.Handled = true;
         }
-
-        
-
     }
 }
-

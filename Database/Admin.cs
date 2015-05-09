@@ -9,29 +9,26 @@ namespace Database
 {
     public partial class Admin : Form
     {
-        private Worker w = new Worker();
-
-        //string connectionString;
-        OleDbConnection connection;
-        OleDbDataAdapter oledbAdapter;
-        OleDbCommandBuilder oledbCmdBuilder;
-        private DataSet ds = new DataSet();
         private DataSet changes;
+        //string connectionString;
+        private OleDbConnection connection;
+        private OleDbDataAdapter oledbAdapter;
+        private OleDbCommandBuilder oledbCmdBuilder;
         //int i;
-        string Sql;
-
+        private string Sql;
+        private readonly DataSet ds = new DataSet();
+        private readonly Worker w = new Worker();
 
         public Admin()
         {
             InitializeComponent();
             dataGridView1.ReadOnly = true;
             BT_AdminSave.Enabled = false;
-            
         }
 
         private void BT_AdminAdd_Click(object sender, EventArgs e)
         {
-            Person p = new Person();
+            var p = new Person();
             p.UserName = TB_AdminUsername.Text;
             p.PassWord = TB_AdminPassword.Text;
 
@@ -40,21 +37,21 @@ namespace Database
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
             //connectionString = @"Povider=Microsoft.ACE.OLEDB.12.0;Data Source=A:\Users\Atul Anand Sinha\Documents\Visual Studio 2013\Projects\Database\Database.accdb;Persist Security Info=False";
-            connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=A:\Users\Atul Anand Sinha\Documents\Visual Studio 2013\Projects\Database\Database.accdb;Persist Security Info=False");
+            connection =
+                new OleDbConnection(
+                    @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=A:\Users\Atul Anand Sinha\Documents\Visual Studio 2013\Projects\Database\Database.accdb;Persist Security Info=False");
             Sql = "SELECT * FROM TPersons";
             try
             {
                 connection.Open();
                 oledbAdapter = new OleDbDataAdapter(Sql, connection);
 
-                DataSet ds = new DataSet();
+                var ds = new DataSet();
                 dataGridView1.DataSource = ds;
                 oledbAdapter.Fill(ds);
                 dataGridView1.DataSource = ds.Tables[0];
@@ -71,7 +68,6 @@ namespace Database
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
             try
             {
                 oledbCmdBuilder = new OleDbCommandBuilder(oledbAdapter);
@@ -101,12 +97,10 @@ namespace Database
         private void LB_AdminUsername_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = null;
-
         }
 
         private void Admin_Load(object sender, EventArgs e)
         {
-            
         }
     }
 }

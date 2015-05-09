@@ -2,31 +2,19 @@
 {
     public class Person
     {
-        int id;
         public static int Id;
+        private int id;
         //{
         //    get { return id; }
         //    set { id = value; }
         //}
-        string userName;
 
-        public string UserName
-        {
-            get { return userName; }
-            set { userName = value; }
-        }
-        string passWord;
-
-        public string PassWord
-        {
-            get { return passWord; }
-            set { passWord = value; }
-        }
+        public string UserName { get; set; }
+        public string PassWord { get; set; }
 
         public override string ToString()
         {
             return UserName + " " + PassWord;
-
         }
     }
 }
