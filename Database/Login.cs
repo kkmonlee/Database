@@ -85,87 +85,7 @@ namespace Database
             {
                 
                 a += 1;
-                #region "Create log database args"
                 
-
-                Catalog cat = new CatalogClass();
-                string cntPath = System.IO.Directory.GetCurrentDirectory();
-                string createStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + TB_LoginUsername.Text.ToLower() + "_LOG.accdb;";
-                if (!File.Exists(cntPath + "\\" + TB_LoginUsername.Text.ToLower() + "_LOG.accdb"))
-                {
-                    cat.Create(createStr);
-                    Table tbl = new Table();
-                    tbl.Name = TB_LoginUsername.Text + "_SESSIONS";
-                    tbl.Columns.Append("ID", DataTypeEnum.adInteger);
-                    tbl.Columns.Append("UserName", DataTypeEnum.adVarWChar, 100);
-                   // ClientMain.Load() will update UserName to TB_LoginUsername.Text or usernamestringo if you will
-                    tbl.Columns.Append("Cycling", DataTypeEnum.adVarWChar, 100);
-                    tbl.Columns.Append("Running", DataTypeEnum.adVarWChar, 100);
-                    tbl.Columns.Append("Swimming", DataTypeEnum.adVarWChar, 100);
-                    cat.Tables.Append(tbl);
-                    System.Runtime.InteropServices.Marshal.FinalReleaseComObject(tbl);
-                    System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat.Tables);
-                    System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat.ActiveConnection);
-                    System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat);
-                    /*
-                     * Inserting UserName into Row
-                     */
-                    try
-                    {
-                        const string empty = "";
-                        ////int emptyInt = int.Parse(empty);
-                        //int? emptyInt = null; // using nullable int
-                        //int empInt = 0;
-                        var tableau = TB_LoginUsername.Text + "_SESSIONS";
-                        var usernametostring = TB_LoginUsername.Text.ToString();
-                        var startPath = System.IO.Directory.GetCurrentDirectory();
-                        OleDbConnection myCon =
-                            new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + startPath + "\\" +
-                                                TB_LoginUsername.Text.ToLower() + "_LOG.accdb;");
-                        OleDbCommand cmd = new OleDbCommand();
-                        
-                        cmd.CommandType = CommandType.Text;
-                        var query = "INSERT INTO " + tableau + " ([UserName], [ID], [Cycling], [Running], [Swimming]) VALUES(@username, @id, @cycling, @running, @swimming)";
-                        cmd.CommandText = query;
-                        cmd.Parameters.AddWithValue("@username", usernametostring);
-                        cmd.Parameters.AddWithValue("@id", a);
-                        // Has to be parsed otherwise @id returns a hash value (eg. {00000000-CF60-05B3-B1D6-020F00000000})
-                        // Nope, I accidentally used DataTypeEnum.adGUID thinking that it would be the most suitable for an ID variable
-                        // adInteger is way more better!
-                        cmd.Parameters.AddWithValue("@cycling", empty);
-                        cmd.Parameters.AddWithValue("@running", empty);
-                        cmd.Parameters.AddWithValue("@swimming", empty);
-                        // We don't want anything in the sports coloumns yet as that will be updated in ClientMain.Log()
-                        // We just want the username so ClientMain.BT_Log() can find is using WHERE
-                        cmd.Connection = myCon;
-                        myCon.Open();
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Username has been entered in your session database!");
-                        cmd.Parameters.Clear();
-                        //myCon.Dispose();
-                        
-                    }
-                    catch (OleDbException ex)
-                    {
-                        MessageBox.Show(ex.ToString());
-                    }
-                    
-                    
-                }
-                else
-                {
-                    //if (MessageBox.Show(
-                    //    "This database already exists! Delete it from /bin/*.accdb and try again \n\nClick Retry to restart the application.",
-                    //    "Error!",
-                    //    MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) == DialogResult.Retry)
-                    //{
-                    //    Application.Restart();
-                    //}
-                    //else
-                    //{
-                    //    this.Close();
-                    //}
-                }
                 
                 #endregion
 
@@ -204,20 +124,103 @@ namespace Database
                              */
                             clientForm.ShowDialog();
                             connection.Dispose();
+                            #region "Create log database args"
+
+
+                            Catalog cat = new CatalogClass();
+                            string cntPath = System.IO.Directory.GetCurrentDirectory();
+                            string createStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + TB_LoginUsername.Text.ToLower() + "_LOG.accdb;";
+                            if (!File.Exists(cntPath + "\\" + TB_LoginUsername.Text.ToLower() + "_LOG.accdb"))
+                            {
+                                cat.Create(createStr);
+                                Table tbl = new Table();
+                                tbl.Name = TB_LoginUsername.Text + "_SESSIONS";
+                                tbl.Columns.Append("ID", DataTypeEnum.adInteger);
+                                tbl.Columns.Append("UserName", DataTypeEnum.adVarWChar, 100);
+                                // ClientMain.Load() will update UserName to TB_LoginUsername.Text or usernamestringo if you will
+                                tbl.Columns.Append("Cycling", DataTypeEnum.adVarWChar, 100);
+                                tbl.Columns.Append("Running", DataTypeEnum.adVarWChar, 100);
+                                tbl.Columns.Append("Swimming", DataTypeEnum.adVarWChar, 100);
+                                cat.Tables.Append(tbl);
+                                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(tbl);
+                                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat.Tables);
+                                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat.ActiveConnection);
+                                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat);
+                                /*
+                                 * Inserting UserName into Row
+                                 */
+                                try
+                                {
+                                    const string empty = "";
+                                    ////int emptyInt = int.Parse(empty);
+                                    //int? emptyInt = null; // using nullable int
+                                    //int empInt = 0;
+                                    var tableau = TB_LoginUsername.Text + "_SESSIONS";
+                                    var usernametostring = TB_LoginUsername.Text.ToString();
+                                    var startPath = System.IO.Directory.GetCurrentDirectory();
+                                    OleDbConnection myCon =
+                                        new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + startPath + "\\" +
+                                                            TB_LoginUsername.Text.ToLower() + "_LOG.accdb;");
+                                    OleDbCommand cmd = new OleDbCommand();
+
+                                    cmd.CommandType = CommandType.Text;
+                                    var query = "INSERT INTO " + tableau + " ([UserName], [ID], [Cycling], [Running], [Swimming]) VALUES(@username, @id, @cycling, @running, @swimming)";
+                                    cmd.CommandText = query;
+                                    cmd.Parameters.AddWithValue("@username", usernametostring);
+                                    cmd.Parameters.AddWithValue("@id", a);
+                                    // Has to be parsed otherwise @id returns a hash value (eg. {00000000-CF60-05B3-B1D6-020F00000000})
+                                    // Nope, I accidentally used DataTypeEnum.adGUID thinking that it would be the most suitable for an ID variable
+                                    // adInteger is way more better!
+                                    cmd.Parameters.AddWithValue("@cycling", empty);
+                                    cmd.Parameters.AddWithValue("@running", empty);
+                                    cmd.Parameters.AddWithValue("@swimming", empty);
+                                    // We don't want anything in the sports coloumns yet as that will be updated in ClientMain.Log()
+                                    // We just want the username so ClientMain.BT_Log() can find is using WHERE
+                                    cmd.Connection = myCon;
+                                    myCon.Open();
+                                    cmd.ExecuteNonQuery();
+                                    MessageBox.Show("Username has been entered in your session database!");
+                                    cmd.Parameters.Clear();
+                                    //myCon.Dispose();
+
+                                }
+                                catch (OleDbException ex)
+                                {
+                                    MessageBox.Show(ex.ToString());
+                                }
+
+
+                            }
+                            else
+                            {
+                                //if (MessageBox.Show(
+                                //    "This database already exists! Delete it from /bin/*.accdb and try again \n\nClick Retry to restart the application.",
+                                //    "Error!",
+                                //    MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) == DialogResult.Retry)
+                                //{
+                                //    Application.Restart();
+                                //}
+                                //else
+                                //{
+                                //    this.Close();
+                                //}
+                            }
                         }
                     }
                     else if (count > 1)
                     {
-                        MessageBox.Show("Duplicate username or password");
                         toolStripStatusLabel1.Visible = true;
                         toolStripStatusLabel1.Text = "Try again!";
+                        MessageBox.Show("Duplicate username or password");
+                        
                     }
                     else
                     {
-                        MessageBox.Show("Username or password do not match.");
-                        //ProgBarColor.SetState(toolStripProgressBar1, 2);
                         toolStripStatusLabel1.Visible = true;
                         toolStripStatusLabel1.Text = "Try again!";
+                        MessageBox.Show("Username or password do not match.");
+                        //ProgBarColor.SetState(toolStripProgressBar1, 2);
+                        
                     }
                 }
             }
