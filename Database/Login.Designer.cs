@@ -63,6 +63,7 @@ namespace Database
             this.TB_LoginUsername.Name = "TB_LoginUsername";
             this.TB_LoginUsername.Size = new System.Drawing.Size(208, 20);
             this.TB_LoginUsername.TabIndex = 1;
+            this.TB_LoginUsername.TextChanged += new System.EventHandler(this.TB_LoginUsername_TextChanged);
             this.TB_LoginUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TB_LoginUsername_KeyDown);
             // 
             // LB_LoginUsername

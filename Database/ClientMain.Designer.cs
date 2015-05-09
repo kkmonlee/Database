@@ -173,6 +173,7 @@ namespace Database
             this.TB_ClientWeight.Name = "TB_ClientWeight";
             this.TB_ClientWeight.Size = new System.Drawing.Size(46, 20);
             this.TB_ClientWeight.TabIndex = 7;
+            this.TB_ClientWeight.TextChanged += new System.EventHandler(this.TB_ClientWeight_TextChanged);
             // 
             // LB_ClientWeight
             // 
@@ -190,6 +191,7 @@ namespace Database
             this.TB_ClientHeight.Name = "TB_ClientHeight";
             this.TB_ClientHeight.Size = new System.Drawing.Size(46, 20);
             this.TB_ClientHeight.TabIndex = 5;
+            this.TB_ClientHeight.TextChanged += new System.EventHandler(this.TB_ClientHeight_TextChanged);
             // 
             // LB_ClientHeight
             // 
@@ -206,6 +208,7 @@ namespace Database
             this.TB_ClientName.Name = "TB_ClientName";
             this.TB_ClientName.Size = new System.Drawing.Size(186, 20);
             this.TB_ClientName.TabIndex = 3;
+            this.TB_ClientName.TextChanged += new System.EventHandler(this.TB_ClientName_TextChanged);
             // 
             // LB_ClientName
             // 
@@ -252,7 +255,7 @@ namespace Database
             // 
             // BT_Reset
             // 
-            this.BT_Reset.Location = new System.Drawing.Point(87, 167);
+            this.BT_Reset.Location = new System.Drawing.Point(123, 167);
             this.BT_Reset.Name = "BT_Reset";
             this.BT_Reset.Size = new System.Drawing.Size(75, 23);
             this.BT_Reset.TabIndex = 16;
@@ -262,7 +265,7 @@ namespace Database
             // 
             // BT_Log
             // 
-            this.BT_Log.Location = new System.Drawing.Point(186, 167);
+            this.BT_Log.Location = new System.Drawing.Point(215, 167);
             this.BT_Log.Name = "BT_Log";
             this.BT_Log.Size = new System.Drawing.Size(75, 23);
             this.BT_Log.TabIndex = 14;
@@ -276,7 +279,7 @@ namespace Database
             this.exerciseStyleComboBox.FormattingEnabled = true;
             this.exerciseStyleComboBox.Location = new System.Drawing.Point(123, 130);
             this.exerciseStyleComboBox.Name = "exerciseStyleComboBox";
-            this.exerciseStyleComboBox.Size = new System.Drawing.Size(121, 21);
+            this.exerciseStyleComboBox.Size = new System.Drawing.Size(167, 21);
             this.exerciseStyleComboBox.TabIndex = 13;
             // 
             // label9
@@ -465,7 +468,7 @@ namespace Database
             // 
             this.SessiondateTimePicker.Location = new System.Drawing.Point(123, 20);
             this.SessiondateTimePicker.Name = "SessiondateTimePicker";
-            this.SessiondateTimePicker.Size = new System.Drawing.Size(138, 20);
+            this.SessiondateTimePicker.Size = new System.Drawing.Size(167, 20);
             this.SessiondateTimePicker.TabIndex = 2;
             // 
             // label3

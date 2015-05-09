@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.OleDb;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using ADOX;
@@ -368,6 +369,11 @@ namespace Database
             e.SuppressKeyPress = true;
             e.Handled = true;
             // Do the same when the cursor is in the textbox
+        }
+
+        private void TB_LoginUsername_TextChanged(object sender, EventArgs e)
+        {
+            TB_LoginUsername.Text = string.Concat(TB_LoginUsername.Text.Where(char.IsLetterOrDigit));
         }
     }
 }

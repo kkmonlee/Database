@@ -1247,6 +1247,33 @@ namespace Database
             "Freestyle, slow", "Freestyle, fast", "Backstroke",
             "Breaststroke", "Butterfly"
         };
+
+        private void TB_ClientName_TextChanged(object sender, EventArgs e)
+        {
+            Regex input = new Regex(@"^[a-zA-Z\s]+$", RegexOptions.IgnoreCase);
+            if (input.IsMatch(TB_ClientName.Text))
+            {
+            }
+            else
+            {
+                MessageBox.Show("You can only enter letters or spaces!", "Error!", MessageBoxButtons.RetryCancel,
+                    MessageBoxIcon.Error);
+                TB_ClientHeight.Text = null;
+                TB_ClientName.Text = null;
+                TB_ClientWeight.Text = null;
+                dateTimePicker1.ResetText();
+            }
+        }
+
+        private void TB_ClientHeight_TextChanged(object sender, EventArgs e)
+        {
+            TB_ClientHeight.Text = string.Concat(TB_ClientHeight.Text.Where(char.IsNumber));
+        }
+
+        private void TB_ClientWeight_TextChanged(object sender, EventArgs e)
+        {
+            TB_ClientWeight.Text = string.Concat(TB_ClientWeight.Text.Where(char.IsNumber));
+        }
         // Declaring the styles/speeds of exercises in the respective comboboxes
 
         #endregion
