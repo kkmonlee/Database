@@ -242,9 +242,9 @@ namespace Database
                 //int id = i + 1;
                 
 
-                string exerciseTypeQuery = "[" + exerciseType + "]";
-                string totalTime = hourTime + ":" + minuteTime;
-                string insertQuery = " || " + date + " | " + totalTime + " | " + duration + " | " + exerciseStyle;
+                var exerciseTypeQuery = "[" + exerciseType + "]";
+                var totalTime = hourTime + ":" + minuteTime;
+                var insertQuery = " || " + date + " | " + totalTime + " | " + duration + " | " + exerciseStyle;
                 // string query = "UPDATE " + tableName + " SET " + exerciseTypeQuery + "=@exerciseQueries" + " WHERE UserName=@username";
                 // MessageBox.Show(query + "\n" + insertQuery + "\n" + exerciseTypeQuery + "\n" + totalTime + "\n" + usernamestringo + "\n ^ name");
 
@@ -286,7 +286,7 @@ namespace Database
                     cmd.Connection = myCon;
                     myCon.Open();
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Logged in!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(@"Your record has been logged in!", @"Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     cmd.Parameters.Clear();
 
                 }
@@ -980,6 +980,7 @@ namespace Database
                         SwimmingTotalCalories.Text = totalCalories.ToString();
                     }
                     if (typeSplit == "Breastroke")
+                        // BUG: Breaststroke spelled wrong.
                     {
                         calories = 590*duraSplit;
                         SwimmingCalories1.Text = @"You burnt " + calories + @" calories";

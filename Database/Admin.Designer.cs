@@ -51,6 +51,7 @@
             this.groupBox1.Controls.Add(this.LB_AdminPassword);
             this.groupBox1.Controls.Add(this.TB_AdminUsername);
             this.groupBox1.Controls.Add(this.LB_AdminUsername);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(273, 139);
@@ -160,6 +161,9 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox1);
+            this.MaximumSize = new System.Drawing.Size(705, 388);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(705, 388);
             this.Name = "Admin";
             this.Text = "Administrator";
             this.Load += new System.EventHandler(this.Admin_Load);
