@@ -979,7 +979,7 @@ namespace Database
                         totalCalories += calories;
                         SwimmingTotalCalories.Text = totalCalories.ToString();
                     }
-                    if (typeSplit == "Breastroke")
+                    if (typeSplit == "Breaststroke")
                         // BUG: Breaststroke spelled wrong.
                     {
                         calories = 590*duraSplit;
