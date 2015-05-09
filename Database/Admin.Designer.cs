@@ -1,11 +1,14 @@
-﻿namespace Database
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace Database
 {
     partial class Admin
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -177,16 +180,16 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button BT_AdminAdd;
-        private System.Windows.Forms.TextBox TB_AdminPassword;
-        private System.Windows.Forms.Label LB_AdminPassword;
-        private System.Windows.Forms.TextBox TB_AdminUsername;
-        private System.Windows.Forms.Label LB_AdminUsername;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button BT_AdminUpdate;
-        private System.Windows.Forms.Button BT_AdminSave;
-        private System.Windows.Forms.Button BT_AdminEdit;
-        private System.Windows.Forms.Panel panel1;
+        private GroupBox groupBox1;
+        private Button BT_AdminAdd;
+        private TextBox TB_AdminPassword;
+        private Label LB_AdminPassword;
+        private TextBox TB_AdminUsername;
+        private Label LB_AdminUsername;
+        private DataGridView dataGridView1;
+        private Button BT_AdminUpdate;
+        private Button BT_AdminSave;
+        private Button BT_AdminEdit;
+        private Panel panel1;
     }
 }

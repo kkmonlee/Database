@@ -1,11 +1,14 @@
-﻿namespace Database
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace Database
 {
     partial class ClientMain
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -878,69 +881,69 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Button BT_ClientSave;
-        private System.Windows.Forms.TextBox TB_ClientWeight;
-        private System.Windows.Forms.Label LB_ClientWeight;
-        private System.Windows.Forms.TextBox TB_ClientHeight;
-        private System.Windows.Forms.Label LB_ClientHeight;
-        private System.Windows.Forms.TextBox TB_ClientName;
-        private System.Windows.Forms.Label LB_ClientName;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox minuteComboBox;
-        private System.Windows.Forms.ComboBox hourComboBox;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker SessiondateTimePicker;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox TB_Duration;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox exerciseTypeComboBox;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox exerciseStyleComboBox;
-        private System.Windows.Forms.Button BT_Reset;
-        private System.Windows.Forms.Button BT_Log;
-        private System.Windows.Forms.Button BT_runningView;
-        private System.Windows.Forms.TabControl tabControl2;
-        private System.Windows.Forms.TabPage tabCycling;
-        private System.Windows.Forms.TabPage tabRunning;
-        private System.Windows.Forms.TabPage tabSwimming;
-        private System.Windows.Forms.Label RunningSession1;
-        private System.Windows.Forms.Label RunningSession2;
-        private System.Windows.Forms.Label RunningSession3;
-        private System.Windows.Forms.Label RunningCalories1;
-        private System.Windows.Forms.Label RunningCalories3;
-        private System.Windows.Forms.Label RunningCalories2;
-        private System.Windows.Forms.Label RunningTotalCalories;
-        private System.Windows.Forms.Button CyclingView;
-        private System.Windows.Forms.Label CyclingTotalCalories;
-        private System.Windows.Forms.Label CyclingCalories3;
-        private System.Windows.Forms.Label CyclingCalories2;
-        private System.Windows.Forms.Label CyclingCalories1;
-        private System.Windows.Forms.Label CyclingSession3;
-        private System.Windows.Forms.Label CyclingSession2;
-        private System.Windows.Forms.Label CyclingSession1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Button BT_SwimmingView;
-        private System.Windows.Forms.Label SwimmingTotalCalories;
-        private System.Windows.Forms.Label SwimmingCalories3;
-        private System.Windows.Forms.Label SwimmingCalories2;
-        private System.Windows.Forms.Label SwimmingCalories1;
-        private System.Windows.Forms.Label SwimmingSession3;
-        private System.Windows.Forms.Label SwimmingSession2;
-        private System.Windows.Forms.Label SwimmingSession1;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private Button BT_ClientSave;
+        private TextBox TB_ClientWeight;
+        private Label LB_ClientWeight;
+        private TextBox TB_ClientHeight;
+        private Label LB_ClientHeight;
+        private TextBox TB_ClientName;
+        private Label LB_ClientName;
+        private Label label1;
+        private TabPage tabPage2;
+        private TabPage tabPage3;
+        private DateTimePicker dateTimePicker1;
+        private Label label2;
+        private ComboBox minuteComboBox;
+        private ComboBox hourComboBox;
+        private Label label5;
+        private Label label4;
+        private DateTimePicker SessiondateTimePicker;
+        private Label label3;
+        private TextBox TB_Duration;
+        private Label label6;
+        private Label label8;
+        private ComboBox exerciseTypeComboBox;
+        private Label label7;
+        private Label label9;
+        private ComboBox exerciseStyleComboBox;
+        private Button BT_Reset;
+        private Button BT_Log;
+        private Button BT_runningView;
+        private TabControl tabControl2;
+        private TabPage tabCycling;
+        private TabPage tabRunning;
+        private TabPage tabSwimming;
+        private Label RunningSession1;
+        private Label RunningSession2;
+        private Label RunningSession3;
+        private Label RunningCalories1;
+        private Label RunningCalories3;
+        private Label RunningCalories2;
+        private Label RunningTotalCalories;
+        private Button CyclingView;
+        private Label CyclingTotalCalories;
+        private Label CyclingCalories3;
+        private Label CyclingCalories2;
+        private Label CyclingCalories1;
+        private Label CyclingSession3;
+        private Label CyclingSession2;
+        private Label CyclingSession1;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox2;
+        private Label label10;
+        private Label label11;
+        private Label label12;
+        private PictureBox pictureBox3;
+        private Button BT_SwimmingView;
+        private Label SwimmingTotalCalories;
+        private Label SwimmingCalories3;
+        private Label SwimmingCalories2;
+        private Label SwimmingCalories1;
+        private Label SwimmingSession3;
+        private Label SwimmingSession2;
+        private Label SwimmingSession1;
 
     }
 }

@@ -1,11 +1,14 @@
-﻿namespace Database
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace Database
 {
     partial class ClientRegister
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -130,13 +133,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Label LB_RegisterWelcome;
-        private System.Windows.Forms.Label LB_RegisterUsername;
-        private System.Windows.Forms.Label LB_RegisterPassword;
-        private System.Windows.Forms.Label LB_RegisterConfirm;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button BT_RegisterRegister;
+        private Label LB_RegisterWelcome;
+        private Label LB_RegisterUsername;
+        private Label LB_RegisterPassword;
+        private Label LB_RegisterConfirm;
+        private TextBox textBox1;
+        private TextBox textBox2;
+        private TextBox textBox3;
+        private Button BT_RegisterRegister;
     }
 }

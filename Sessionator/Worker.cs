@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain;
 using System.Data;
-using System.Data.Common;
 using System.Data.OleDb;
-using System.Data.SqlClient;
-using System.Windows;
-using ADOX;
-
+using Domain;
 
 namespace Sessionator
 {

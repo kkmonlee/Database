@@ -1,23 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using System.Data.OleDb;
 using System.IO;
-using System.Security.AccessControl;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 using ADOX;
-using Domain;
-using Microsoft;
 using Keys = System.Windows.Forms.Keys;
-
 
 namespace Database
 {
@@ -50,7 +38,7 @@ namespace Database
 
             InitializeComponent();
             
-            BT_toolStripAdmin.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            BT_toolStripAdmin.Alignment = ToolStripItemAlignment.Right;
             // tried to align it to the right.
             // setting boundaries
             toolStripProgressBar1.Maximum = 100;
@@ -76,7 +64,7 @@ namespace Database
         {
             var a = 0;
             #region "Timer arguments"
-            this.timer1.Start();
+            timer1.Start();
             toolStripStatusLabel1.Visible = true;
             toolStripStatusLabel1.Text = "Loading";
             #endregion
@@ -92,7 +80,7 @@ namespace Database
                 usernameFromLogin = TB_LoginUsername.Text;
                 const string constring = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=A:\Users\Atul Anand Sinha\Documents\Visual Studio 2013\Projects\Database\Database.accdb;Persist Security Info=False";
                 OleDbConnection connection = new OleDbConnection(constring);
-                OleDbCommand command = new OleDbCommand("SELECT * FROM TPersons WHERE UserName='" + this.TB_LoginUsername.Text + "' AND PassWord='" + this.TB_LoginPassword.Text + "';", connection);
+                OleDbCommand command = new OleDbCommand("SELECT * FROM TPersons WHERE UserName='" + TB_LoginUsername.Text + "' AND PassWord='" + TB_LoginPassword.Text + "';", connection);
                 OleDbDataReader reader;
                 {
                     connection.Open();
@@ -128,7 +116,7 @@ namespace Database
 
 
                             Catalog cat = new CatalogClass();
-                            string cntPath = System.IO.Directory.GetCurrentDirectory();
+                            string cntPath = Directory.GetCurrentDirectory();
                             string createStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + cntPath + "\\" + TB_LoginUsername.Text.ToLower() + "_LOG.accdb;";
                             if (!File.Exists(cntPath + "\\" + TB_LoginUsername.Text.ToLower() + "_LOG.accdb"))
                             {
@@ -142,10 +130,10 @@ namespace Database
                                 tbl.Columns.Append("Running", DataTypeEnum.adVarWChar, 100);
                                 tbl.Columns.Append("Swimming", DataTypeEnum.adVarWChar, 100);
                                 cat.Tables.Append(tbl);
-                                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(tbl);
-                                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat.Tables);
-                                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat.ActiveConnection);
-                                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(cat);
+                                Marshal.FinalReleaseComObject(tbl);
+                                Marshal.FinalReleaseComObject(cat.Tables);
+                                Marshal.FinalReleaseComObject(cat.ActiveConnection);
+                                Marshal.FinalReleaseComObject(cat);
                                 /*
                                  * Inserting UserName into Row
                                  */
@@ -156,8 +144,8 @@ namespace Database
                                     //int? emptyInt = null; // using nullable int
                                     //int empInt = 0;
                                     var tableau = TB_LoginUsername.Text + "_SESSIONS";
-                                    var usernametostring = TB_LoginUsername.Text.ToString();
-                                    var startPath = System.IO.Directory.GetCurrentDirectory();
+                                    var usernametostring = TB_LoginUsername.Text;
+                                    var startPath = Directory.GetCurrentDirectory();
                                     OleDbConnection myCon =
                                         new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + startPath + "\\" +
                                                             TB_LoginUsername.Text.ToLower() + "_LOG.accdb;");
@@ -190,20 +178,6 @@ namespace Database
                                 }
 
 
-                            }
-                            else
-                            {
-                                //if (MessageBox.Show(
-                                //    "This database already exists! Delete it from /bin/*.accdb and try again \n\nClick Retry to restart the application.",
-                                //    "Error!",
-                                //    MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) == DialogResult.Retry)
-                                //{
-                                //    Application.Restart();
-                                //}
-                                //else
-                                //{
-                                //    this.Close();
-                                //}
                             }
                         }
                     }
@@ -318,7 +292,7 @@ namespace Database
             if (e.KeyCode != Keys.Enter) return;
             BT_LoginLogin.PerformClick();
             #region "Timer arguments"
-            this.timer1.Start();
+            timer1.Start();
             toolStripStatusLabel1.Visible = true;
             toolStripStatusLabel1.Text = "Loading";
             #endregion

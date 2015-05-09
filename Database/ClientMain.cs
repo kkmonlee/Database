@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using ZedGraph;
 
 namespace Database
 {
@@ -379,7 +378,7 @@ namespace Database
                 {
                     var session1 = doubleVBarSplit[1];
                     var SplitIt1 = Regex.Split(session1, " \\| ");
-                    dateSplit = DateTime.Parse(s: SplitIt1[0]).ToShortDateString();
+                    dateSplit = DateTime.Parse(SplitIt1[0]).ToShortDateString();
                     timeSplit = string.Concat(SplitIt1[1]);
                     duraSplit = int.Parse(SplitIt1[2]);
                     typeSplit = string.Concat(SplitIt1[3]);
@@ -685,7 +684,7 @@ namespace Database
                 {
                     var session1 = doubleVBarSplit[1];
                     var SplitIt1 = Regex.Split(session1, " \\| ");
-                    dateSplit = DateTime.Parse(s: SplitIt1[0]).ToShortDateString();
+                    dateSplit = DateTime.Parse(SplitIt1[0]).ToShortDateString();
                     timeSplit = string.Concat(SplitIt1[1]);
                     duraSplit = int.Parse(SplitIt1[2]);
                     typeSplit = string.Concat(SplitIt1[3]);
@@ -947,7 +946,7 @@ namespace Database
                 {
                     var session1 = doubleVBarSplit[1];
                     var SplitIt1 = Regex.Split(session1, " \\| ");
-                    dateSplit = DateTime.Parse(s: SplitIt1[0]).ToShortDateString();
+                    dateSplit = DateTime.Parse(SplitIt1[0]).ToShortDateString();
                     timeSplit = string.Concat(SplitIt1[1]);
                     duraSplit = int.Parse(SplitIt1[2]);
                     typeSplit = string.Concat(SplitIt1[3]);
@@ -993,11 +992,6 @@ namespace Database
                         SwimmingCalories1.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
                         SwimmingTotalCalories.Text = totalCalories.ToString();
-                    }
-                    else
-                    {
-                        //Exception ex = null;
-                        //MessageBox.Show(ex.ToString());
                     }
                 }
                 else
@@ -1062,11 +1056,6 @@ namespace Database
                         totalCalories += calories;
                         SwimmingTotalCalories.Text = totalCalories.ToString();
                     }
-                    else
-                    {
-                        //Exception ex = null;
-                        //MessageBox.Show(ex.ToString());
-                    }
                 }
                 else
                 {
@@ -1128,11 +1117,6 @@ namespace Database
                         SwimmingCalories3.Text = @"You burnt " + calories + @" calories";
                         totalCalories += calories;
                         SwimmingTotalCalories.Text = totalCalories.ToString();
-                    }
-                    else
-                    {
-                        //Exception ex = null;
-                        //MessageBox.Show(ex.ToString());
                     }
                 }
                 else

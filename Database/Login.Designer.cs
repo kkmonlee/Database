@@ -1,11 +1,14 @@
-﻿namespace Database
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace Database
 {
     partial class Login
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -177,19 +180,19 @@
 
         #endregion
 
-        private System.Windows.Forms.Label LB_LoginWelcome;
-        private System.Windows.Forms.TextBox TB_LoginUsername;
-        private System.Windows.Forms.Label LB_LoginUsername;
-        private System.Windows.Forms.Label LB_LoginPassword;
-        private System.Windows.Forms.TextBox TB_LoginPassword;
-        private System.Windows.Forms.LinkLabel LB_LoginRegister;
-        private System.Windows.Forms.Button BT_LoginLogin;
-        private System.Windows.Forms.Timer timer1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripStatusLabel BT_toolStripAdmin;
+        private Label LB_LoginWelcome;
+        private TextBox TB_LoginUsername;
+        private Label LB_LoginUsername;
+        private Label LB_LoginPassword;
+        private TextBox TB_LoginPassword;
+        private LinkLabel LB_LoginRegister;
+        private Button BT_LoginLogin;
+        private Timer timer1;
+        private BackgroundWorker backgroundWorker1;
+        private StatusStrip statusStrip1;
+        private ToolStripProgressBar toolStripProgressBar1;
+        private ToolStripStatusLabel toolStripStatusLabel1;
+        private ToolStripStatusLabel BT_toolStripAdmin;
     }
 
     public class LoginImpl : Login
