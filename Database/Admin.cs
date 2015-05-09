@@ -50,8 +50,8 @@ namespace Database
             {
                 connection.Open();
                 oledbAdapter = new OleDbDataAdapter(Sql, connection);
-
-                var ds = new DataSet();
+                
+                
                 dataGridView1.DataSource = ds;
                 oledbAdapter.Fill(ds);
                 dataGridView1.DataSource = ds.Tables[0];
